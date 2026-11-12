@@ -1,0 +1,5 @@
+- id: elementomaquia
+  title: Elementomaquia
+  kind: sistema
+  status: { pt: Em desenvolvimento, en: In development }
+  draft: true

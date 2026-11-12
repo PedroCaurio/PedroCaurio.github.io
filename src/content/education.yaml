@@ -1,0 +1,24 @@
+- id: furg
+  order: 1
+  institution: Universidade Federal do Rio Grande
+  shortName: FURG
+  area:
+    pt: Engenharia de Computação
+    en: Computer Engineering
+  studyType:
+    pt: Bacharelado
+    en: Bachelor's degree
+  endDate: '2027-12'
+  expected: true
+  score: '9.2'
+
+- id: ifrs
+  order: 2
+  institution: Instituto Federal do Rio Grande do Sul — Campus Rio Grande
+  shortName: IFRS
+  area:
+    pt: Automação Industrial
+    en: Industrial Automation
+  studyType:
+    pt: Curso Técnico
+    en: Technical degree

@@ -5,8 +5,8 @@
 
 ## Dados informados pelo Pedro
 
-- 4º ano de **Engenharia de Computação**, coeficiente de rendimento **9,2** — Universidade Federal do Rio Grande (FURG) **(confirmar; inferido do README de um repositório)**.
-- **Técnico em Automação Industrial**.
+- 4º ano de **Engenharia de Computação**, coeficiente de rendimento **9,2** — Universidade Federal do Rio Grande (FURG), conclusão em dez/2027.
+- **Técnico em Automação Industrial** — IFRS Campus Rio Grande.
 - Experiência com programação em **Godot** e **Unity**.
 - **Analista de Projetos de Software** — usando arquitetura de IA, spec-driven development, harness de agentes, bots, Cursor, MCP, endpoints, firmware para ESP32, aplicações web, modelos de análise de dados com ML e estatística clássica.
 - **Desenvolvedor de sistemas de RPG de mesa**.
@@ -14,19 +14,38 @@
 
 ## Experiência profissional
 
-**Analista de Projetos de Software — CESS (Computational Energy Saving Solutions)** · [cess.ind.br](https://cess.ind.br) · período **(confirmar)**
+**Analista de Projetos de Software — CESS (Computational Energy Saving Solutions)** · [cess.ind.br](https://cess.ind.br) · **CLT, 100% remoto** · início **(confirmar mês/ano)**
 
-- O que a CESS faz (informação pública do site): soluções que integram engenharia, automação e análise de dados para **eficiência energética e segurança operacional em sistemas de refrigeração industrial**. Produto principal: **SGEM** (Sistema de Gerenciamento e Monitoramento), plataforma desenvolvida com apoio do CNPq que analisa dados operacionais e roda simulações computacionais.
+- Domínio (informação pública do site da CESS): engenharia, automação e análise de dados para **eficiência energética e segurança operacional em refrigeração industrial**.
+- Atuação (informada pelo Pedro):
+  - Desenvolvimento de funcionalidades **IoT** (inclui firmware para **ESP32**).
+  - **Análise de dados** com algoritmos de **Machine Learning** e **estatística clássica**.
+  - **Orquestração de agentes de IA** e **automações** (arquitetura de IA, spec-driven development, harness, bots, Cursor, MCP).
+  - **Configuração de redes e comunicação remota**.
+  - Endpoints e aplicações web.
 - **Contrato de confidencialidade.** Regras para o site e o currículo:
-  - Pode: nome da empresa, cargo, período, domínio de atuação (energia/refrigeração industrial), tecnologias e tipos de solução em termos genéricos.
+  - Pode: nome da empresa, cargo, regime, domínio de atuação, tecnologias e tipos de solução em termos genéricos.
   - Não pode: nomes de clientes, dados, métricas internas, arquitetura detalhada, código, screenshots.
+  - **Não citar o SGEM** (nem o nome de qualquer produto interno).
   - Estudos de caso da CESS usam selo "Projeto confidencial" e descrevem problema e abordagem de forma genérica.
-  - Citar o SGEM pelo nome só se o Pedro confirmar que é permitido **(confirmar)**.
+
+## Formação
+
+| Curso | Instituição | Período | Observação |
+| --- | --- | --- | --- |
+| Bacharelado em Engenharia de Computação | Universidade Federal do Rio Grande (**FURG**) | conclusão prevista **dez/2027** | 4º ano, CR **9,2** (escala 0–10, **confirmar escala**) |
+| Técnico em Automação Industrial | Instituto Federal do Rio Grande do Sul (**IFRS**) — Campus Rio Grande | ano **(confirmar)** | |
+
+## RPG de mesa
+
+- Sistema em desenvolvimento: **Elementomaquia** (detalhes — gênero, mecânica central, material publicável — **a confirmar**).
+- Mestre de RPG de mesa há mais de 7 anos.
 
 ## Links
 
 | Canal | URL |
 | --- | --- |
+| E-mail público | cauriopedro2@gmail.com |
 | GitHub | https://github.com/PedroCaurio |
 | itch.io | https://pedrocaurio.itch.io/ |
 | LinkedIn | https://www.linkedin.com/in/pedro-caurio-3ab4a5260/ |

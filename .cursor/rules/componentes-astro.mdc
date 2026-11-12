@@ -1,0 +1,23 @@
+---
+description: Convenções para páginas e componentes Astro (tokens, i18n, acessibilidade, zero JS)
+globs: src/**/*.astro
+alwaysApply: false
+---
+
+# Componentes e páginas Astro
+
+- Estilo só com utilitários gerados pelos tokens de `src/styles/tokens.css` (`bg-card`, `text-text-muted`, `text-accent`, `border-border`, `font-mono`, `rounded-lg`...). A paleta padrão do Tailwind está desligada; `bg-slate-900` não existe.
+- Proibido cor literal (`#fff`, `rgb()`, `bg-[#...]`). `npm run check:tokens` barra.
+- Texto sobre fundo `accent` usa `text-on-accent`.
+- Nenhum texto de conteúdo no componente: leia de `astro:content` e use `localize(campo, locale)` de `src/i18n`. Rótulos de interface também vêm de `src/i18n`.
+- Reutilize `src/components/ui/` antes de criar componente novo.
+- Zero JS de cliente por padrão. Interatividade só em `src/components/islands/`, com `client:idle` ou `client:visible`.
+- Acessibilidade: um `h1` por página, hierarquia de headings sem saltos, `alt` em imagens, links com texto descritivo, foco visível (não remova `outline`).
+- Movimento: transições curtas (150–250ms) e sempre neutralizadas por `prefers-reduced-motion` (já tratado em `global.css`).
+
+```astro
+<!-- ❌ -->
+<a class="bg-orange-500 text-white">Baixar CV</a>
+<!-- ✅ -->
+<a class="rounded-md bg-accent px-5 py-2.5 font-mono text-on-accent hover:bg-accent-hover">{t.downloadCv}</a>
+```

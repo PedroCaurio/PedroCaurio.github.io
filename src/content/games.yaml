@@ -1,0 +1,165 @@
+# Papel do Pedro em todos os jogos: programador (confirmado em 12/nov/2026).
+- id: molten-metal
+  title: Molten Metal
+  order: 1
+  featured: true
+  engine: Godot
+  language: GDScript
+  genre: { pt: Ritmo · Clicker · Roguelite, en: Rhythm · Clicker · Roguelite }
+  summary:
+    pt: Um ferreiro ancestral forja armas lendárias no ritmo dos tambores de guerra. Quanto mais preciso o ritmo, mais lendária a arma.
+    en: An ancestral blacksmith forges legendary weapons to the beat of war drums. The tighter your rhythm, the more legendary the weapon.
+  role: { pt: Programador (todo o código), en: Programmer (entire codebase) }
+  contributions:
+    pt:
+      - Todo o código do projeto, escrito sem IA (proibida na jam).
+      - Efeitos visuais (VFX) e game feel para dar polimento a uma mecânica de clicker simples.
+    en:
+      - The entire codebase, written without AI (banned in the jam).
+      - Visual effects (VFX) and game feel to polish a simple clicker mechanic.
+  team:
+    - name: Pedro Caurio
+      role: { pt: Programação, en: Programming }
+    - name: mad
+    - name: Monorelh4
+    - name: 0utro
+    - name: Ito
+    - name: Juliana Acunha
+  jam:
+    name: GameJamPlus 26/27
+    awards:
+      pt: [2º lugar geral, Melhor Áudio, Melhor Pitch]
+      en: [2nd place overall, Best Audio, Best Pitch]
+  noGenerativeAi: true
+  links:
+    itch: https://madsilvax.itch.io/moltenmetal
+
+- id: midnight-meow
+  title: Midnight Meow
+  order: 2
+  featured: true
+  engine: Unity
+  language: C#
+  genre: { pt: Roguelite de ação · Multiplayer, en: Action roguelite · Multiplayer }
+  summary:
+    pt: Jogue como Nix, um gato que defende seu castelo, ou Cora, uma maga que protege o reino. Aceite contratos, sobreviva a ondas de ratos e derrote a origem da anomalia.
+    en: Play as Nix, a cat defending his castle, or Cora, a mage protecting the kingdom. Take contracts, survive waves of rats and defeat the source of the anomaly.
+  role: { pt: Programador, en: Programmer }
+  contributions:
+    pt:
+      - Arquitetura multiplayer completa com Unity Relay e Netcode.
+      - Inimigos, ataques e state machine de inimigos.
+      - Economia, skills e personagens jogáveis distintos.
+      - Transições de tela e efeitos visuais (VFX).
+    en:
+      - Full multiplayer architecture with Unity Relay and Netcode.
+      - Enemies, attacks and enemy state machine.
+      - Economy, skills and distinct playable characters.
+      - Screen transitions and visual effects (VFX).
+  team:
+    - name: Pedro Caurio
+      role: { pt: Programação, en: Programming }
+    - name: Debs Carvalho
+      role: { pt: Programação, en: Programming }
+    - name: Juliana Acunha
+      role: { pt: Game design, en: Game design }
+    - name: Luiz Henrique
+      role: { pt: Arte, en: Art }
+    - name: Vitor Silva
+      role: { pt: Arte, en: Art }
+  jam:
+    name: GameJamPlus 2025/26
+  noGenerativeAi: true
+  links:
+    itch: https://midnight-meow.itch.io/midnight-meow
+
+- id: mathias-shooter
+  title: Mathias Shooter
+  order: 3
+  featured: true
+  engine: Pyxel
+  language: Python
+  genre: { pt: Plataforma retrô · 2 jogadores, en: Retro platformer · 2 players }
+  summary:
+    pt: Controle Mathias, o dinossauro, para fugir de uma caverna de monstros, ou jogue em dupla com Mathilda.
+    en: Guide Mathias the dinosaur out of a monster cave, or team up with Mathilda in co-op.
+  role: { pt: Programador, en: Programmer }
+  contributions:
+    pt:
+      - Engine retrô sem sistemas prontos, com colisão, projéteis, movimentação, input e câmera escritos do zero.
+    en:
+      - A retro engine with no built-in systems, so collision, projectiles, movement, input and camera were written from scratch.
+  noGenerativeAi: true
+  links:
+    itch: https://ju-acunha.itch.io/mathias-shooter
+    repo: https://github.com/PedroCaurio/MathiasShooter
+  playableInBrowser: true
+
+- id: asas-temperadas
+  title: 'Asas Temperadas: Receitas Mágicas'
+  order: 4
+  engine: Godot
+  language: GDScript
+  genre: { pt: Simulação de culinária 3D, en: 3D cooking simulation }
+  summary:
+    pt: Remi, um cozinheiro renomado, é levado a um mundo mágico para cozinhar receitas exóticas numa taverna encantada.
+    en: Remi, a renowned cook, is whisked away to a magical world to cook exotic recipes in an enchanted tavern.
+  role: { pt: Programador, en: Programmer }
+  contributions:
+    pt: [Sistema de inventário., Sistema de quests.]
+    en: [Inventory system., Quest system.]
+  noGenerativeAi: true
+  links:
+    itch: https://ju-acunha.itch.io/asas-temperadas-receitas-mgicas
+
+- id: eco
+  title: Eco
+  order: 5
+  engine: Godot
+  language: GDScript
+  genre: { pt: Ficção interativa · Múltiplos finais, en: Interactive fiction · Multiple endings }
+  summary:
+    pt: Controle o eco de uma vida, refletindo sobre escolhas e sacrifícios.
+    en: Control the echo of a life as it reflects on choices and sacrifices.
+  role: { pt: Programador, en: Programmer }
+  contributions:
+    pt: [Sistema de decisões que conduz aos múltiplos finais.]
+    en: [Decision system driving the multiple endings.]
+  noGenerativeAi: true
+  links:
+    itch: https://ju-acunha.itch.io/eco
+
+- id: petalas-ao-vento
+  title: Pétalas ao Vento
+  order: 6
+  engine: Godot
+  language: GDScript
+  genre: { pt: Ficção interativa · Pixel art, en: Interactive fiction · Pixel art }
+  summary:
+    pt: Rosa, uma senhora que sofreu uma perda, revive memórias preciosas ao guardar fotos em seu álbum.
+    en: Rosa, a woman coping with loss, relives precious memories as she collects photos for her album.
+  role: { pt: Programador, en: Programmer }
+  contributions:
+    pt: [Movimentação., Sistema de diálogo.]
+    en: [Movement., Dialogue system.]
+  noGenerativeAi: true
+  links:
+    itch: https://ju-acunha.itch.io/ptalas-ao-vento
+
+- id: the-symphonys-awakening
+  title: "The Symphony's Awakening"
+  order: 7
+  engine: Godot
+  language: GDScript
+  genre: { pt: Aventura · Roguelike 2D, en: Adventure · 2D roguelike }
+  summary:
+    pt: Alex, um músico fracassado, precisa trazer a música de volta a um mundo silenciado pela Rainha do Silêncio.
+    en: Alex, a failed musician, must bring music back to a world silenced by the Queen of Silence.
+  role: { pt: Programador, en: Programmer }
+  contributions:
+    pt:
+      - Sistema de combate com três canções em ciclo de vantagem (raiva, tristeza e alegria).
+    en:
+      - Combat system with three songs in an advantage cycle (anger, sadness and joy).
+  links:
+    itch: https://ju-acunha.itch.io/the-symphonys-awakening

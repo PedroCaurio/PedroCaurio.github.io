@@ -6,26 +6,27 @@ Fase 3 do Spec-Driven Development. Cada tarefa termina com a verificação indic
 
 - [x] T-00a Decisões de posicionamento, idiomas, conceito visual e hospedagem.
 - [x] T-01 `requirements.md`, `DESIGN.md` e ADR-001 atualizados.
-- [ ] T-00b Pedro responde o restante de [perguntas-abertas.md](../context/perguntas-abertas.md) (experiência, formação, papéis nos jogos, RPG, e-mail).
+- [x] T-00b Empresa, regime, atuação, formação, papéis nos jogos, RPG e e-mail respondidos.
+- [ ] T-00c Restante de [perguntas-abertas.md](../context/perguntas-abertas.md) (datas, Elementomaquia, resultados genéricos da CESS, mídia).
 
 ## Fase 1 — Fundação
 
 - [x] T-10a `git init` local e `.gitignore`.
 - [x] T-10b Repositório no GitHub `PedroCaurio/PedroCaurio.github.io` (serve na raiz `pedrocaurio.github.io`).
 - [x] T-11 Scaffold Astro 7.4.11 + TypeScript strict + Tailwind v4.3 + sitemap + i18n (pt-br padrão, en). Node atualizado para 26 LTS. *Verif.: `npm run build` ok, 0 erros.*
-- [ ] T-12 ESLint + Prettier; regra que proíbe cores literais fora de `tokens.css`. (`astro check` já está no build.) Obs.: a paleta padrão do Tailwind já está desligada em `tokens.css` (`--color-*: initial`).
+- [x] T-12 ESLint 10 (typescript-eslint, eslint-plugin-astro) + Prettier (plugins astro e tailwind) + `scripts/check-tokens.mjs` (barra cores literais fora de `tokens.css`; testado com violação proposital). `eslint-plugin-jsx-a11y` ficou de fora por não suportar ESLint 10; acessibilidade coberta pelo axe.
 - [x] T-13 `tokens.css` + `@theme` a partir do DESIGN.md; fontes self-hosted (Fontsource). *Verif.: `/dev/tokens` e `/` no navegador em 390 e 1280px, fontes carregadas, sem overflow horizontal, auditoria do Astro sem problemas.*
-- [ ] T-14 `.cursor/rules/` (astro, estilo, conteúdo) e skill `verify-in-browser`.
-- [ ] T-15 Playwright + axe + Lighthouse CI configurados com um teste fumaça. *Verif.: `npm run test` ok.*
-- [~] T-16 GitHub Actions: `.github/workflows/deploy.yml` (withastro/action@v6, Node 26) faz check + build + deploy no push em `main`. Falta o passo de testes (depende de T-15).
+- [x] T-14 `.cursor/rules/` (conteudo, componentes-astro, testes) e skills `verify-in-browser` e `adding-content`.
+- [x] T-15 Playwright 1.65 + axe (WCAG 2.2 AA) em 390px e 1280px, contra o build de produção. Fixtures: erros de console/rede, overflow horizontal, axe. *Verif.: 18 testes passando.* Lighthouse CI fica para T-51.
+- [x] T-16 GitHub Actions: job `verify` (check + build + test, relatório como artefato em falha) em push/PR; `build` + `deploy` só em `main` e só se `verify` passar.
 
 ## Fase 2 — Conteúdo como dado
 
-- [ ] T-20 `content.config.ts` com schemas Zod (profile, projects, games, rpg).
-- [ ] T-21 `profile.json` preenchido com dados confirmados.
-- [ ] T-22 Projetos: escrever 2–4 estudos de caso (começar por `distributed-chat` e o próprio site; adicionar trabalho de Analista se liberado).
-- [ ] T-23 Jogos: 6 entradas, com papel confirmado; capturar loops de gameplay (MP4/WebM ≤ 1 MB) e covers.
-- [ ] T-24 RPG: 1–2 entradas.
+- [x] T-20 `content.config.ts` com 7 coleções Zod (profile, experience, education, skills, games, projects, rpg), campos `{ pt, en }`. *Verif.: schema rejeita e-mail inválido no build; `/dev/conteudo` renderiza tudo; teste garante ausência de "SGEM".*
+- [x] T-21 Perfil, experiência (CESS), formação (FURG, IFRS) e skills preenchidos com dados confirmados.
+- [ ] T-22 Projetos: estudo de caso do próprio site (rascunho pronto), `distributed-chat` (draft, falta papel/contexto), 1–2 casos genéricos da CESS (aguardando T-00c).
+- [~] T-23 Jogos: 7 entradas com papel e sistemas confirmados. Falta: covers e loops de gameplay (MP4/WebM ≤ 1 MB).
+- [~] T-24 RPG: Elementomaquia criado como draft; faltam detalhes.
 
 ## Fase 3 — Páginas
 

@@ -1,0 +1,127 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { localize, type Locale } from '../../i18n';
+
+const byOrder = <T extends { data: { order: number } }>(a: T, b: T) => a.data.order - b.data.order;
+
+const [profile] = await getCollection('profile');
+const experience = (await getCollection('experience')).sort(byOrder);
+const education = (await getCollection('education')).sort(byOrder);
+const skills = (await getCollection('skills')).sort(byOrder);
+const games = (await getCollection('games')).sort(byOrder);
+const projects = (await getCollection('projects')).sort(byOrder);
+const rpg = await getCollection('rpg');
+
+const locales: Locale[] = ['pt-br', 'en'];
+---
+
+<BaseLayout title="Conteúdo — dev" description="Revisão de todo o conteúdo do site." noindex>
+  <div class="mx-auto max-w-5xl space-y-12 px-6 py-16">
+    <header>
+      <p class="font-mono text-sm text-accent">02 // conteúdo</p>
+      <h1 class="mt-2 text-3xl font-bold">Revisão de conteúdo</h1>
+      <p class="mt-2 max-w-[68ch] text-text-muted">
+        Página interna. Renderiza todas as coleções de <code class="font-mono">src/content/</code> nos dois
+        idiomas para revisão de texto. Itens com <code class="font-mono">draft: true</code> aparecem marcados.
+      </p>
+    </header>
+
+    {locales.map((locale) => (
+      <section aria-labelledby={`lang-${locale}`} class="space-y-8 rounded-lg border border-border p-6">
+        <h2 id={`lang-${locale}`} class="font-mono text-sm text-accent">
+          &gt; {locale}
+        </h2>
+
+        <div>
+          <h3 class="text-xl font-bold">{profile.data.name}</h3>
+          <p class="text-text-muted">{localize(profile.data.label, locale)}</p>
+          <p class="mt-2 max-w-[68ch]">{localize(profile.data.summary, locale)}</p>
+        </div>
+
+        <div class="space-y-4">
+          <h3 class="font-mono text-sm text-text-muted">experience</h3>
+          {experience.map((job) => (
+            <article class="rounded-lg bg-card p-4">
+              <p class="font-bold">
+                {localize(job.data.position, locale)} · {job.data.organization}
+              </p>
+              <p class="text-sm text-text-muted">{localize(job.data.employment, locale)}</p>
+              <ul class="mt-2 list-disc space-y-1 pl-5">
+                {localize(job.data.highlights, locale).map((h) => (
+                  <li>{h}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+
+        <div class="space-y-2">
+          <h3 class="font-mono text-sm text-text-muted">education</h3>
+          {education.map((ed) => (
+            <p>
+              {localize(ed.data.studyType, locale)} — {localize(ed.data.area, locale)} · {ed.data.shortName}
+              {ed.data.endDate && ` · ${ed.data.endDate}${ed.data.expected ? ' (prev.)' : ''}`}
+              {ed.data.score && ` · CR ${ed.data.score}`}
+            </p>
+          ))}
+        </div>
+
+        <div class="space-y-2">
+          <h3 class="font-mono text-sm text-text-muted">skills</h3>
+          {skills.map((s) => (
+            <p>
+              <span class="font-mono text-accent">{localize(s.data.attribute, locale)}</span>{' '}
+              <strong>{localize(s.data.name, locale)}</strong>: {s.data.keywords.join(', ')}
+            </p>
+          ))}
+        </div>
+
+        <div class="space-y-4">
+          <h3 class="font-mono text-sm text-text-muted">games</h3>
+          {games.map((g) => (
+            <article data-kind="game" class="rounded-lg bg-card p-4">
+              <p class="font-mono text-xs text-accent">
+                {g.data.engine} · {localize(g.data.genre, locale)}
+                {g.data.jam && ` · ${g.data.jam.name}`}
+              </p>
+              <p class="mt-1 font-bold">{g.data.title}</p>
+              <p class="text-text-muted">{localize(g.data.summary, locale)}</p>
+              {g.data.jam?.awards && (
+                <p class="mt-1 text-sm">{localize(g.data.jam.awards, locale).join(' · ')}</p>
+              )}
+              <ul class="mt-2 list-disc space-y-1 pl-5 text-sm">
+                {localize(g.data.contributions, locale).map((c) => (
+                  <li>{c}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+
+        <div class="space-y-2">
+          <h3 class="font-mono text-sm text-text-muted">projects</h3>
+          {projects
+            .filter((p) => p.id.startsWith(locale === 'en' ? 'en/' : 'pt/'))
+            .map((p) => (
+              <p>
+                <strong>{p.data.title}</strong>
+                {p.data.draft && <span class="font-mono text-xs text-accent"> [draft]</span>}:{' '}
+                {p.data.summary}
+              </p>
+            ))}
+        </div>
+
+        <div class="space-y-2">
+          <h3 class="font-mono text-sm text-text-muted">rpg</h3>
+          {rpg.map((r) => (
+            <p>
+              <strong>{r.data.title}</strong> · {localize(r.data.status, locale)}
+              {r.data.draft && <span class="font-mono text-xs text-accent"> [draft]</span>}
+            </p>
+          ))}
+        </div>
+      </section>
+    ))}
+  </div>
+</BaseLayout>

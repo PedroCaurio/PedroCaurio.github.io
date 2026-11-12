@@ -1,0 +1,15 @@
+---
+description: Convenções para testes Playwright + axe
+globs: tests/**
+alwaysApply: false
+---
+
+# Testes (`tests/`)
+
+- Importe `test` e `expect` de `tests/fixtures.ts`, que fornece `consoleErrors`, `expectNoA11yViolations` e `expectNoHorizontalOverflow`.
+- Rodam contra o build de produção (`astro preview` na porta 4322) em dois projetos: `mobile-390` e `desktop-1280`.
+- Toda página nova entra em `PAGES` de `tests/e2e/smoke.spec.ts` (status 200, `lang`, um `h1`, axe, console limpo, sem overflow).
+- Nome do teste cita o requisito quando houver: `test('R-01 hero mostra nome, papel e CTAs', ...)`.
+- Localizadores por papel e nome acessível (`getByRole`, `getByText`); `data-*` só quando não houver alternativa semântica.
+- Proibido `waitForTimeout`. Use asserções web-first (`await expect(...).toBeVisible()`).
+- Fluxo: `npm run build && npm test`. Falhou no CI? O relatório sobe como artefato `playwright-report`.

@@ -1,0 +1,29 @@
+- id: pedro
+  name: Pedro Caurio
+  fullName: Pedro Martins Caurio
+  label:
+    pt: Engenheiro de Computação em formação · IA, IoT e Dados
+    en: Computer Engineering student · AI, IoT & Data
+  summary:
+    pt: >-
+      Analista de Projetos de Software na CESS, onde desenvolvo funcionalidades IoT, análises de dados com
+      Machine Learning e estatística clássica e orquestração de agentes de IA. Estudante de Engenharia de
+      Computação na FURG, com coeficiente de rendimento 9,2. Fora do trabalho, programo jogos, com prêmio na
+      GameJamPlus, e desenvolvo sistemas de RPG de mesa.
+    en: >-
+      Software Project Analyst at CESS, where I build IoT features, data analysis with Machine Learning and
+      classical statistics, and AI agent orchestration. Computer Engineering student at FURG with a 9.2 GPA
+      (out of 10). Outside work, I program games, including an award-winning GameJamPlus entry, and design
+      tabletop RPG systems.
+  email: cauriopedro2@gmail.com
+  profiles:
+    - network: GitHub
+      username: PedroCaurio
+      url: https://github.com/PedroCaurio
+    - network: LinkedIn
+      username: pedro-caurio-3ab4a5260
+      url: https://www.linkedin.com/in/pedro-caurio-3ab4a5260/
+    - network: itch.io
+      username: pedrocaurio
+      url: https://pedrocaurio.itch.io/
+  rpgMasterYears: 7

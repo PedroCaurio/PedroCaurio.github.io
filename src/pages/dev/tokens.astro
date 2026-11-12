@@ -25,45 +25,62 @@ const colors = [
     </header>
 
     <section aria-labelledby="cores">
-      <h2 id="cores" class="font-mono text-sm text-text-muted">&gt; cores</h2>
+      <h2 id="cores" class="font-mono text-sm text-text-muted">
+        &gt; cores
+      </h2>
       <ul class="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-        {
-          colors.map((c) => (
-            <li class="overflow-hidden rounded-lg border border-border bg-card">
-              <div class={`h-16 ${c.className}`} />
-              <p class="px-3 py-2 font-mono text-xs">--color-{c.token}</p>
-            </li>
-          ))
-        }
+        {colors.map((c) => (
+          <li class="overflow-hidden rounded-lg border border-border bg-card">
+            <div class={`h-16 ${c.className}`} />
+            <p class="px-3 py-2 font-mono text-xs">--color-{c.token}</p>
+          </li>
+        ))}
       </ul>
     </section>
 
     <section aria-labelledby="tipografia" class="space-y-4">
-      <h2 id="tipografia" class="font-mono text-sm text-text-muted">&gt; tipografia</h2>
+      <h2 id="tipografia" class="font-mono text-sm text-text-muted">
+        &gt; tipografia
+      </h2>
       <p class="text-display font-bold">Display Space Grotesk</p>
       <p class="text-3xl font-bold">Título 3xl</p>
       <p class="max-w-[68ch] text-base">
-        Corpo em Space Grotesk. Comprimento de linha limitado a 68 caracteres para leitura confortável em telas largas.
+        Corpo em Space Grotesk. Comprimento de linha limitado a 68 caracteres para leitura confortável em
+        telas largas.
       </p>
       <p class="font-mono text-sm text-text-muted">Space Mono — rótulos, metadados, terminal.</p>
     </section>
 
     <section aria-labelledby="botoes" class="space-y-4">
-      <h2 id="botoes" class="font-mono text-sm text-text-muted">&gt; botões e tags</h2>
+      <h2 id="botoes" class="font-mono text-sm text-text-muted">
+        &gt; botões e tags
+      </h2>
       <div class="flex flex-wrap items-center gap-4">
-        <a href="#" class="rounded-md bg-accent px-5 py-2.5 font-mono text-sm font-bold text-on-accent transition-colors duration-150 hover:bg-accent-hover">
+        <a
+          href="#"
+          class="rounded-md bg-accent px-5 py-2.5 font-mono text-sm font-bold text-on-accent transition-colors duration-150 hover:bg-accent-hover"
+        >
           Baixar CV
         </a>
-        <a href="#" class="rounded-md border border-border px-5 py-2.5 font-mono text-sm transition-colors duration-150 hover:border-accent hover:text-accent">
+        <a
+          href="#"
+          class="rounded-md border border-border px-5 py-2.5 font-mono text-sm transition-colors duration-150 hover:border-accent hover:text-accent"
+        >
           GitHub
         </a>
-        <span class="rounded-sm border border-border bg-card px-2 py-0.5 font-mono text-xs text-text-muted">Unity</span>
-        <span class="rounded-sm border border-border bg-card px-2 py-0.5 font-mono text-xs text-text-muted">MCP</span>
+        <span class="rounded-sm border border-border bg-card px-2 py-0.5 font-mono text-xs text-text-muted">
+          Unity
+        </span>
+        <span class="rounded-sm border border-border bg-card px-2 py-0.5 font-mono text-xs text-text-muted">
+          MCP
+        </span>
       </div>
     </section>
 
     <section aria-labelledby="card">
-      <h2 id="card" class="font-mono text-sm text-text-muted">&gt; card</h2>
+      <h2 id="card" class="font-mono text-sm text-text-muted">
+        &gt; card
+      </h2>
       <article class="mt-4 max-w-md rounded-lg border border-border bg-card p-6 transition-colors duration-150 hover:border-accent hover:bg-card-hover">
         <p class="font-mono text-xs text-accent">Unity · GameJamPlus 2025/26</p>
         <h3 class="mt-2 text-xl font-bold">Midnight Meow</h3>

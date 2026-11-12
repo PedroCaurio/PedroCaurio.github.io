@@ -85,34 +85,26 @@ flowchart LR
 | `/cv/pedro-caurio.pdf` | PDF gerado | R-09 |
 | `/como-foi-feito` | Processo SDD + agentes | R-12 |
 | `/llms.txt`, `/resume.json` | Máquina | R-22 |
-| `/en/...` | Espelho em inglês (se aprovado) | R-13 |
+| `/en/...` | Espelho em inglês | R-13 |
+| `/dev/tokens`, `/dev/conteudo` | Páginas internas de verificação (noindex, fora do sitemap) | — |
 
-## Modelo de conteúdo (schemas)
+## Modelo de conteúdo (implementado)
 
-```ts
-// profile.json — subconjunto do JSON Resume
-basics: { name, label, email, url, summary, location: { city, region, countryCode },
-          profiles: [{ network, username, url }] }
-work: [{ name, position, startDate, endDate?, summary, highlights: string[] }]
-education: [{ institution, area, studyType, startDate, endDate?, score? }]
-skills: [{ name, keywords: string[] }]
-languages: [{ language, fluency }]
+Fonte de verdade: [`src/content.config.ts`](../../src/content.config.ts). Resumo:
 
-// projects/*.md (frontmatter)
-title, slug, summary, role, period, featured: boolean, order: number,
-stack: string[], links: { repo?, demo?, docs? }, confidential: boolean,
-cover?: image, problem, constraints, decision, result   // corpo em Markdown
+| Coleção | Arquivo | Campos principais |
+| --- | --- | --- |
+| `profile` | `profile.yaml` | name, fullName, label\*, summary\*, email, profiles[], rpgMasterYears |
+| `experience` | `experience.yaml` | organization, url, position\*, employment\*, startDate?, endDate?, confidential, summary\*, highlights\*[], tags[] |
+| `education` | `education.yaml` | institution, shortName, area\*, studyType\*, startDate?, endDate?, expected, score? |
+| `skills` | `skills.yaml` | attribute\* (ficha de RPG), name\*, keywords[] |
+| `games` | `games.yaml` | title, engine, language, genre\*, summary\*, role\*, contributions\*[], team[], jam?{name, awards\*[]}, noGenerativeAi, links{itch, repo?}, playableInBrowser, featured, order |
+| `projects` | `projects/{pt,en}/<slug>.md` | title, summary, role, stack[], links, confidential, draft, featured, order + corpo (estudo de caso) |
+| `rpg` | `rpg.yaml` | title, kind, status\*, summary\*?, draft |
 
-// games/*.md (frontmatter)
-title, slug, summary, engine, genre: string[], role, team: [{ name, role }],
-jam?: { name, year, result? }, status, itchUrl, repo?, playableInBrowser: boolean,
-cover: image, loop?: video, featured: boolean, order: number
+\* campo localizado `{ pt, en }`. Helpers em `src/i18n/index.ts` (`localize(campo, locale)`). Datas em `AAAA-MM`. Entradas `draft: true` não são publicadas nas páginas finais.
 
-// rpg/*.md
-title, kind: 'sistema' | 'campanha', summary, mechanics: string[], links?
-```
-
-Campos `pt`/`en` por idioma serão resolvidos com collections separadas por locale (`content/pt/`, `content/en/`) se R-13 for aprovado.
+Mídia (covers e loops de gameplay) entra como campos opcionais quando os arquivos existirem.
 
 ## Interatividade
 

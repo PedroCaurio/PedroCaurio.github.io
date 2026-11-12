@@ -1,48 +1,35 @@
-# Perguntas abertas (bloqueiam conteúdo, não a estrutura)
+# Perguntas abertas
 
-Responda direto neste arquivo ou no chat. A implementação da estrutura pode começar antes; o conteúdo final depende disto.
+Responda direto neste arquivo ou no chat. O que já foi decidido está em [perfil.md](perfil.md) e [inventario-itch.md](inventario-itch.md).
 
 ## Decididas (12/nov/2026)
 
-| # | Pergunta | Decisão |
-| --- | --- | --- |
-| 1 | Foco do site | **Engenharia de software / IA**, com game dev e RPG como diferencial |
-| 3 | Idiomas | **PT-BR (padrão) + EN** — site e PDF |
-| 4 | Empresa | **CESS — Computational Energy Saving Solutions** ([cess.ind.br](https://cess.ind.br)). Projetos sob **contrato de confidencialidade** |
-| 10 | Papel nos jogos | **Programador em todos** (detalhes em [inventario-itch.md](inventario-itch.md)) |
-| 14 | Conceito visual | **Híbrido**: base sóbria de engenharia/terminal + toques de RPG pontuais |
-| 16 | Hospedagem | **GitHub Pages** (`pedrocaurio.github.io`), repositório autorizado |
+| Tema | Decisão |
+| --- | --- |
+| Foco do site | Engenharia de software / IA, com game dev e RPG como diferencial |
+| Idiomas | PT-BR (padrão) + EN — site e PDF |
+| Conceito visual | Híbrido: base sóbria de engenharia/terminal + toques de RPG pontuais |
+| Hospedagem | GitHub Pages — [pedrocaurio.github.io](https://pedrocaurio.github.io) |
+| Empresa | CESS, CLT 100% remoto, sob confidencialidade. **Não citar o SGEM** |
+| Atuação na CESS | IoT, análise de dados (ML + estatística clássica), orquestração de agentes e automações, redes e comunicação remota |
+| Formação | FURG (Eng. Computação, conclusão dez/2027); IFRS Campus Rio Grande (Técnico em Automação Industrial) |
+| Jogos | Programador em todos |
+| RPG | Sistema em desenvolvimento: **Elementomaquia** |
+| E-mail | cauriopedro2@gmail.com |
 
-## Posicionamento
+## Ainda em aberto
 
-2. Que tipo de vaga/oportunidade você quer atrair? (estágio, júnior, pesquisa, freelance, internacional/remoto)
-
-## Experiência profissional (CESS)
-
-4a. Período na CESS (mês/ano de início) e regime (estágio, CLT, PJ, bolsa).
-4b. Posso citar o **SGEM** pelo nome, ou só "plataforma de monitoramento e eficiência energética"?
-5. Para estudos de caso **genéricos** (sem clientes, dados ou detalhes protegidos): 2–3 tipos de trabalho que você fez. Exemplo de formato: "Harness de agentes de IA para o time de desenvolvimento: specs versionadas + MCP + Cursor; reduziu X". Diga também o que pode ser quantificado (mesmo aproximado, em %).
-6. Há algo de ESP32 / ML / MCP **fora da CESS** que possa ser público (projeto pessoal, faculdade)? Se não, vale criar 1 repositório demonstrativo pequeno.
-
-## Formação
-
-7. Confirmar: Engenharia de Computação na **FURG**? Previsão de formatura?
-8. Técnico em Automação Industrial: instituição e ano. O repositório `Sistema-Controle-Presenca-Ocupacao` é o TCC?
-9. CR 9,2 em escala 0–10?
-
-## Jogos e RPG
-
-10a. Papéis dos colegas no **Molten Metal** (mad, Monorelh4, 0utro, Ito, Juliana Acunha), para os créditos.
-11. O repositório `oficina` (Unity/C#) é o quê?
-12. Sistemas de RPG que você desenvolveu: nome, gênero, mecânica central, se há material publicável (PDF, página de regras).
-13. Quer uma seção dedicada a RPG de mesa ou só mencionar no "Sobre"?
-13a. Tem vídeos ou gravações de gameplay dos jogos? (Senão, eu gravo ou você grava loops de 3–5 s.)
-
-## Design
-
-15. Tem foto profissional para usar? Logo/monograma próprio?
-
-## Publicação
-
-17. E-mail público de contato.
-18. Telefone no PDF do currículo: sim ou não?
+1. **Início na CESS** (mês/ano).
+2. **Ano de conclusão do técnico** no IFRS.
+3. CR 9,2 está na escala 0–10?
+4. Que tipo de oportunidade você quer atrair? (estágio, júnior, pesquisa, freelance, internacional/remoto) — muda o texto do hero.
+5. **Elementomaquia:** gênero/tema, mecânica central (pelo nome, algo com elementos?), estágio (regras escritas, playtests), se há material publicável.
+6. Seção dedicada a RPG de mesa ou só um bloco no "Sobre"?
+7. Algum resultado da CESS que possa ser dito de forma genérica e aproximada (ex.: "reduziu em ~X% o tempo de análise")?
+8. Algo de ESP32 / ML / agentes fora da CESS que possa ser público? Senão, vale criar 1 repositório demonstrativo.
+9. Papéis dos colegas no Molten Metal (mad, Monorelh4, 0utro, Ito, Juliana Acunha), para os créditos.
+10. O repositório `oficina` (Unity/C#) é o quê?
+11. Vídeos/gravações de gameplay dos jogos.
+12. Foto profissional? Logo/monograma?
+13. Telefone no PDF do currículo: sim ou não?
+14. Cidade para o currículo (ex.: "Rio Grande, RS — remoto")?

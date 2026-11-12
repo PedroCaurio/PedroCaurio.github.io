@@ -1,0 +1,30 @@
+---
+description: Regras para editar o conteúdo do site (fatos sobre o Pedro, bilíngue, confidencialidade)
+globs: src/content/**
+alwaysApply: false
+---
+
+# Conteúdo (`src/content/`)
+
+- Fonte de fatos: `docs/context/` e o que o Pedro disse. **Nunca invente** datas, números, papéis, resultados ou tecnologias.
+- Fato não confirmado: deixe o campo vazio (schemas aceitam opcionais) ou marque a entrada com `draft: true`. Nada de "a confirmar" em entradas publicadas.
+- Todo texto visível tem `pt` e `en`. As duas versões dizem a mesma coisa.
+- Schemas em `src/content.config.ts`. Ao adicionar campo, atualize o schema e `docs/specs/design.md`.
+- Projetos em Markdown ficam em `projects/pt/<slug>.md` e `projects/en/<slug>.md`, com o mesmo slug.
+
+## CESS (contrato de confidencialidade)
+
+- Pode: empresa, cargo, regime (CLT, remoto), domínio (refrigeração industrial / eficiência energética), tipos de trabalho e tecnologias em termos genéricos.
+- Proibido: clientes, dados, métricas internas, arquitetura detalhada, código, screenshots e **nomes de produtos internos (ex.: SGEM)**. Há teste automático para isso.
+
+## Jogos
+
+- O papel do Pedro é programador em todos. Liste os sistemas que ele programou (ver `docs/context/inventario-itch.md`).
+- Credite o time inteiro; papéis dos colegas só se confirmados.
+
+```yaml
+# ❌ inventado
+highlights: { pt: [Reduzi o consumo de energia em 30%.] }
+# ✅ fiel ao que foi informado
+highlights: { pt: [Análise de dados operacionais com Machine Learning e estatística clássica.] }
+```

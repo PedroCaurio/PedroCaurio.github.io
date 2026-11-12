@@ -1,0 +1,33 @@
+/* Fonte única dos tokens visuais. Espelha docs/design/DESIGN.md. */
+
+@theme {
+  --color-*: initial;
+  --font-*: initial;
+
+  --color-bg: #121212;
+  --color-surface: #1a1a1a;
+  --color-card: #212121;
+  --color-card-hover: #2a2a2a;
+  --color-border: #333333;
+  --color-text: #f5f5f5;
+  --color-text-muted: #a3a3a3;
+  --color-text-faint: #737373;
+  --color-accent: #ff751f;
+  --color-accent-hover: #ff8f45;
+  --color-on-accent: #121212;
+
+  --font-sans: 'Space Grotesk Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Space Mono', ui-monospace, 'Cascadia Code', monospace;
+
+  --text-3xl: clamp(1.75rem, 3vw, 2.25rem);
+  --text-display: clamp(2.5rem, 6vw, 4.5rem);
+  --text-display--line-height: 1.05;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  --ease-out-soft: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  --shadow-glow: 0 0 0 1px var(--color-accent), 0 0 24px -8px var(--color-accent);
+}

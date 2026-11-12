@@ -28,9 +28,9 @@ Numeração usada nos testes (`R-xx`).
 
 - **R-01 Hero**: nome, papel, frase de posicionamento, CTAs "Baixar CV", "GitHub", "LinkedIn", "Contato". Visível sem rolagem em 390×844 e 1280×800.
 - **R-02 Sobre**: resumo curto, formação (Eng. Computação, CR 9,2; Técnico em Automação Industrial), diferencial (IA + jogos + RPG).
-- **R-03 Experiência**: timeline com Analista de Projetos de Software e bullets no formato PRTO.
+- **R-03 Experiência**: timeline com Analista de Projetos de Software na **CESS** e bullets no formato PRTO, respeitando o contrato de confidencialidade (sem clientes, dados ou métricas internas; ver regras em [perfil.md](../context/perfil.md#experiência-profissional)).
 - **R-04 Projetos de software**: 2–4 destaques em cards → página de estudo de caso (problema, restrições, decisão/trade-off, resultado, papel, stack, links). Lista secundária "outros projetos" compacta.
-- **R-05 Jogos**: grade com mídia animada, engine, papel, time, jam, link para itch.io. Página de detalhe opcional para o destaque (Midnight Meow).
+- **R-05 Jogos**: grade com mídia animada, engine, papel, sistemas programados, time, jam/prêmios, link para itch.io. Páginas de detalhe para os destaques **Molten Metal** (premiado) e **Midnight Meow** (multiplayer). Prêmios aparecem como selo no card.
 - **R-06 RPG de mesa**: seção ou bloco sobre sistemas desenvolvidos e experiência como mestre (escopo depende da pergunta 13).
 - **R-07 Habilidades**: agrupadas por domínio, sem porcentagens.
 - **R-08 Contato**: e-mail clicável, links sociais. Sem formulário obrigatório.

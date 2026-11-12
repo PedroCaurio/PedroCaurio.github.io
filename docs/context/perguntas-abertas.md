@@ -8,18 +8,21 @@ Responda direto neste arquivo ou no chat. A implementação da estrutura pode co
 | --- | --- | --- |
 | 1 | Foco do site | **Engenharia de software / IA**, com game dev e RPG como diferencial |
 | 3 | Idiomas | **PT-BR (padrão) + EN** — site e PDF |
+| 4 | Empresa | **CESS — Computational Energy Saving Solutions** ([cess.ind.br](https://cess.ind.br)). Projetos sob **contrato de confidencialidade** |
+| 10 | Papel nos jogos | **Programador em todos** (detalhes em [inventario-itch.md](inventario-itch.md)) |
 | 14 | Conceito visual | **Híbrido**: base sóbria de engenharia/terminal + toques de RPG pontuais |
-| 16 | Hospedagem | **GitHub Pages** (`pedrocaurio.github.io`) |
+| 16 | Hospedagem | **GitHub Pages** (`pedrocaurio.github.io`), repositório autorizado |
 
 ## Posicionamento
 
 2. Que tipo de vaga/oportunidade você quer atrair? (estágio, júnior, pesquisa, freelance, internacional/remoto)
 
-## Experiência profissional
+## Experiência profissional (CESS)
 
-4. Empresa/instituição e período do cargo de **Analista de Projetos de Software**. Pode ser citada?
-5. 2–3 projetos concretos desse cargo que podem virar estudo de caso (mesmo sem código): problema, sua parte, resultado (números se houver).
-6. Há algo de ESP32 / ML / MCP que possa ser público (repo, vídeo, foto, diagrama)?
+4a. Período na CESS (mês/ano de início) e regime (estágio, CLT, PJ, bolsa).
+4b. Posso citar o **SGEM** pelo nome, ou só "plataforma de monitoramento e eficiência energética"?
+5. Para estudos de caso **genéricos** (sem clientes, dados ou detalhes protegidos): 2–3 tipos de trabalho que você fez. Exemplo de formato: "Harness de agentes de IA para o time de desenvolvimento: specs versionadas + MCP + Cursor; reduziu X". Diga também o que pode ser quantificado (mesmo aproximado, em %).
+6. Há algo de ESP32 / ML / MCP **fora da CESS** que possa ser público (projeto pessoal, faculdade)? Se não, vale criar 1 repositório demonstrativo pequeno.
 
 ## Formação
 
@@ -29,10 +32,11 @@ Responda direto neste arquivo ou no chat. A implementação da estrutura pode co
 
 ## Jogos e RPG
 
-10. Seu papel em: Pétalas ao Vento, Eco, Asas Temperadas, Mathias Shooter, The Symphony's Awakening. "0utro" é você?
+10a. Papéis dos colegas no **Molten Metal** (mad, Monorelh4, 0utro, Ito, Juliana Acunha), para os créditos.
 11. O repositório `oficina` (Unity/C#) é o quê?
 12. Sistemas de RPG que você desenvolveu: nome, gênero, mecânica central, se há material publicável (PDF, página de regras).
 13. Quer uma seção dedicada a RPG de mesa ou só mencionar no "Sobre"?
+13a. Tem vídeos ou gravações de gameplay dos jogos? (Senão, eu gravo ou você grava loops de 3–5 s.)
 
 ## Design
 

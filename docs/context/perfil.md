@@ -12,6 +12,17 @@
 - **Desenvolvedor de sistemas de RPG de mesa**.
 - **Mestre de RPG de mesa** há mais de 7 anos.
 
+## Experiência profissional
+
+**Analista de Projetos de Software — CESS (Computational Energy Saving Solutions)** · [cess.ind.br](https://cess.ind.br) · período **(confirmar)**
+
+- O que a CESS faz (informação pública do site): soluções que integram engenharia, automação e análise de dados para **eficiência energética e segurança operacional em sistemas de refrigeração industrial**. Produto principal: **SGEM** (Sistema de Gerenciamento e Monitoramento), plataforma desenvolvida com apoio do CNPq que analisa dados operacionais e roda simulações computacionais.
+- **Contrato de confidencialidade.** Regras para o site e o currículo:
+  - Pode: nome da empresa, cargo, período, domínio de atuação (energia/refrigeração industrial), tecnologias e tipos de solução em termos genéricos.
+  - Não pode: nomes de clientes, dados, métricas internas, arquitetura detalhada, código, screenshots.
+  - Estudos de caso da CESS usam selo "Projeto confidencial" e descrevem problema e abordagem de forma genérica.
+  - Citar o SGEM pelo nome só se o Pedro confirmar que é permitido **(confirmar)**.
+
 ## Links
 
 | Canal | URL |
@@ -45,7 +56,8 @@ Isso **diverge** do texto enviado agora. **Decisão (12/nov/2026): o site posici
 | Embarcados | Firmware ESP32, automação industrial |
 | Dados | Machine Learning, estatística clássica, análise de dados |
 | Sistemas | Sockets TCP/UDP, sistemas distribuídos, simulação de SO, compiladores (C/Make) |
-| Game dev | Unity (C#), Godot (GDScript), LÖVE (Lua), Pyxel (Python) |
+| Game dev | Godot (GDScript), Unity (C#, Netcode for GameObjects, Unity Relay), Pyxel (Python), LÖVE (Lua); state machines, sistemas de inventário/quests/diálogo/decisão, VFX |
+| Conquistas | GameJamPlus 26/27: **2º lugar geral, Melhor Áudio, Melhor Pitch** (Molten Metal) |
 | Design de jogos | Sistemas de RPG de mesa, narrativa, balanceamento |
 | Linguagens | Python, C#, C, C++, Lua, GDScript, JavaScript/TypeScript **(confirmar TS)** |
 | Soft skills | Liderança e facilitação (mestre de RPG 7+ anos), gestão de projetos |

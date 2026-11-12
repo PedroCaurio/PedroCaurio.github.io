@@ -11,13 +11,13 @@ Fase 3 do Spec-Driven Development. Cada tarefa termina com a verificação indic
 ## Fase 1 — Fundação
 
 - [x] T-10a `git init` local e `.gitignore`.
-- [ ] T-10b Repositório no GitHub `PedroCaurio/PedroCaurio.github.io` (serve na raiz `pedrocaurio.github.io`).
+- [x] T-10b Repositório no GitHub `PedroCaurio/PedroCaurio.github.io` (serve na raiz `pedrocaurio.github.io`).
 - [x] T-11 Scaffold Astro 7.4.11 + TypeScript strict + Tailwind v4.3 + sitemap + i18n (pt-br padrão, en). Node atualizado para 26 LTS. *Verif.: `npm run build` ok, 0 erros.*
 - [ ] T-12 ESLint + Prettier; regra que proíbe cores literais fora de `tokens.css`. (`astro check` já está no build.) Obs.: a paleta padrão do Tailwind já está desligada em `tokens.css` (`--color-*: initial`).
 - [x] T-13 `tokens.css` + `@theme` a partir do DESIGN.md; fontes self-hosted (Fontsource). *Verif.: `/dev/tokens` e `/` no navegador em 390 e 1280px, fontes carregadas, sem overflow horizontal, auditoria do Astro sem problemas.*
 - [ ] T-14 `.cursor/rules/` (astro, estilo, conteúdo) e skill `verify-in-browser`.
 - [ ] T-15 Playwright + axe + Lighthouse CI configurados com um teste fumaça. *Verif.: `npm run test` ok.*
-- [ ] T-16 GitHub Actions: check → build → test → deploy. *Verif.: site "hello" publicado.*
+- [~] T-16 GitHub Actions: `.github/workflows/deploy.yml` (withastro/action@v6, Node 26) faz check + build + deploy no push em `main`. Falta o passo de testes (depende de T-15).
 
 ## Fase 2 — Conteúdo como dado
 

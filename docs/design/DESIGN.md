@@ -71,11 +71,26 @@ Comprimento de linha do corpo: 60–75 caracteres (`max-width: 68ch`).
 
 ## Movimento
 
-- Durações: 150ms (hover), 250ms (entrada), 400ms (transição de página).
-- Easing: `cubic-bezier(0.2, 0.8, 0.2, 1)`.
-- Entrada de listas com stagger de 40ms.
-- View Transitions do Astro entre páginas.
-- `@media (prefers-reduced-motion: reduce)`: remove animações não essenciais e o cursor piscante.
+- Durações: 150–250ms (hover), 700ms (entrada do hero), 400ms (transição de página).
+- Easing: `cubic-bezier(0.2, 0.8, 0.2, 1)` (`--ease-out-soft`).
+- Tudo em CSS, sem JS de cliente. Classes em `src/styles/global.css`:
+
+| Classe | Efeito |
+| --- | --- |
+| `animate-fade-up` | Entrada do hero, com `animation-delay` escalonado (linhas do terminal, números) |
+| `type-in` | Digitação do prompt (`whoami`, `press start`); requer `--chars` |
+| `reveal` | Revelação ao rolar (`animation-timeline: view()`) |
+| `heading-bar` | Barra laranja sob o `h2` que cresce ao entrar na tela |
+| `draw-y` | Linha do tempo da experiência desenhada ao rolar |
+| `scroll-progress` | Barra de progresso de leitura no cabeçalho (`scroll(root)`) |
+| `card-glow` | Hover/foco: card sobe, anel laranja gira na borda (`@property --angle`) e sombra suave |
+| `grid-pan`, `hero-glow` | Grid de fundo deslizando e brilho "respirando" |
+| `marquee` / `marquee-track` | Letreiro de tecnologias na home (pausa no hover; decorativo, `aria-hidden`) |
+| `float`, `shimmer`, `scanlines`, `flicker` | Toques de jogo: d20 flutuando, brilho nos selos, efeito CRT nas capas |
+
+- Toque de RPG concentrado em `/jogos/`. A home profissional usa só os efeitos sóbrios (entrada, revelação, brilho de card, letreiro).
+- Estados iniciais escondidos ou em movimento ficam dentro de `@media (prefers-reduced-motion: no-preference)`; revelação ao rolar só com `@supports (animation-timeline: view())`. Sem suporte ou com movimento reduzido, tudo aparece estático.
+- O axe roda com `reducedMotion: 'reduce'` para avaliar o contraste do estado final.
 
 ## Componentes base (a criar em `src/components/ui/`)
 

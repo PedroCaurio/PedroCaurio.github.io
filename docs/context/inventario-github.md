@@ -24,8 +24,8 @@ Legenda: **A** = candidato a destaque · **B** = lista secundária/"outros proje
 
 ## Lacuna principal
 
-O trabalho que o Pedro descreve como mais forte (arquitetura de IA, agentes, MCP, ESP32, ML) **não aparece em nenhum repositório público**: é trabalho na CESS, sob **contrato de confidencialidade** (confirmado em 12/nov/2026). Opções:
+O trabalho que o Pedro descreve como mais forte (arquitetura de IA, agentes, MCP, microcontroladores, ML) **não aparece em nenhum repositório público**: é trabalho na CESS, sob **contrato de confidencialidade** (confirmado em 12/nov/2026). Opções:
 
 1. Estudos de caso **sem código** (problema, arquitetura, decisões, resultado), respeitando confidencialidade.
-2. Criar 1–2 repositórios públicos de demonstração (ex.: um servidor MCP pequeno, um firmware ESP32 de exemplo, um notebook de ML).
+2. Criar 1–2 repositórios públicos de demonstração (ex.: um servidor MCP pequeno, um firmware de exemplo para microcontrolador, um notebook de ML).
 3. **Este próprio site** como projeto público de destaque: construído com SDD + agentes, com o harness (`AGENTS.md`, specs, skills) versionado e explicado.

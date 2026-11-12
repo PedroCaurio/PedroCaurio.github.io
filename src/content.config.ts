@@ -5,6 +5,7 @@ import { z } from 'astro/zod';
 const text = z.string().trim().min(1);
 const localized = z.object({ pt: text, en: text });
 const localizedList = z.object({ pt: z.array(text).min(1), en: z.array(text).min(1) });
+const localizedTags = z.object({ pt: z.array(text), en: z.array(text) }).default({ pt: [], en: [] });
 const yearMonth = z.string().regex(/^\d{4}-(0[1-9]|1[0-2])$/, 'use AAAA-MM');
 
 const profile = defineCollection({
@@ -33,7 +34,7 @@ const experience = defineCollection({
     confidential: z.boolean().default(false),
     summary: localized,
     highlights: localizedList,
-    tags: z.array(text),
+    tags: localizedTags,
   }),
 });
 
@@ -58,7 +59,8 @@ const skills = defineCollection({
     order: z.number().int(),
     attribute: localized,
     name: localized,
-    keywords: z.array(text).min(1),
+    track: z.enum(['professional', 'play']).default('professional'),
+    keywords: localizedList,
   }),
 });
 

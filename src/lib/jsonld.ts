@@ -24,7 +24,7 @@ export function personJsonLd({ site, locale, profile, experience, education, ski
     jobTitle: current ? localize(current.position, locale) : undefined,
     worksFor: current ? { '@type': 'Organization', name: current.organization, url: current.url } : undefined,
     alumniOf: education.map((ed) => ({ '@type': 'EducationalOrganization', name: ed.institution })),
-    knowsAbout: skills.flatMap((group) => group.keywords),
+    knowsAbout: skills.flatMap((group) => localize(group.keywords, locale)),
     sameAs: profile.profiles.map((p) => p.url),
   };
 }

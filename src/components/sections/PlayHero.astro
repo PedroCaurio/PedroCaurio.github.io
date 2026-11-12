@@ -1,0 +1,73 @@
+---
+import type { Locale } from '../../i18n';
+import { homePath } from '../../i18n';
+import { useTranslations } from '../../i18n/ui';
+import D20 from '../ui/D20.astro';
+import StatsBar from '../ui/StatsBar.astro';
+
+interface Props {
+  locale: Locale;
+  gamesCount: number;
+  masterYears: number;
+  systemsCount: number;
+}
+
+const { locale, gamesCount, masterYears, systemsCount } = Astro.props;
+const t = useTranslations(locale);
+
+const stats = [
+  { value: String(gamesCount), label: t.play.stats.games },
+  { value: t.play.stats.jamValue, label: t.play.stats.jam },
+  { value: `${masterYears}+`, label: t.play.stats.rpg },
+  { value: String(systemsCount), label: t.play.stats.systems },
+];
+---
+
+<section aria-labelledby="play-title" class="relative overflow-hidden border-b border-border">
+  <div aria-hidden="true" class="bg-grid bg-grid-fade grid-pan absolute inset-0"></div>
+  <div aria-hidden="true" class="scanlines flicker pointer-events-none absolute inset-0"></div>
+  <div
+    aria-hidden="true"
+    class="hero-glow pointer-events-none absolute -top-48 left-1/2 size-[48rem] -translate-x-1/2"
+  ></div>
+
+  <div class="relative mx-auto grid max-w-6xl items-center gap-10 px-6 pt-16 pb-14 md:pt-24 lg:grid-cols-[1.4fr_1fr] lg:pb-20">
+    <div>
+      <p class="font-mono text-sm text-accent">
+        <span aria-hidden="true">▶ </span>
+        <span class="type-in" style={`--chars: ${t.play.prompt.length}`}>
+          {t.play.prompt}
+        </span>
+        <span
+          aria-hidden="true"
+          class="ml-1 inline-block h-3.5 w-2 translate-y-0.5 animate-blink bg-accent"
+        ></span>
+      </p>
+      <h1
+        id="play-title"
+        class="mt-4 animate-fade-up text-display font-bold tracking-tight [animation-delay:150ms]"
+      >
+        {t.play.title}
+      </h1>
+      <p class="mt-6 max-w-[52ch] animate-fade-up text-lg text-text-muted [animation-delay:300ms]">
+        {t.play.intro}
+      </p>
+      <a
+        href={homePath[locale]}
+        class="group mt-8 inline-flex animate-fade-up items-center gap-2 font-mono text-sm text-text-muted transition-colors [animation-delay:420ms] hover:text-accent"
+      >
+        <span aria-hidden="true" class="transition-transform duration-200 group-hover:-translate-x-1">
+          ←
+        </span>
+        {t.play.back}
+      </a>
+    </div>
+    <div class="hidden justify-center lg:flex" aria-hidden="true">
+      <div class="animate-fade-up [animation-delay:350ms]">
+        <D20 class="float size-64 text-accent drop-shadow-[0_0_24px_var(--color-accent)]" />
+      </div>
+    </div>
+  </div>
+
+  <StatsBar stats={stats} />
+</section>

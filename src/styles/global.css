@@ -1,6 +1,12 @@
 @import 'tailwindcss';
 @import './tokens.css';
 
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
@@ -32,6 +38,7 @@
     *::before,
     *::after {
       animation-duration: 0.01ms !important;
+      animation-delay: 0ms !important;
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
@@ -65,5 +72,245 @@
       color-mix(in srgb, var(--color-accent) 16%, transparent) 0%,
       transparent 65%
     );
+  }
+
+  .scanlines {
+    background: repeating-linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--color-bg) 45%, transparent) 0 1px,
+      transparent 1px 3px
+    );
+  }
+
+  .card-glow {
+    position: relative;
+    transition:
+      transform 250ms var(--ease-out-soft),
+      border-color 200ms ease,
+      box-shadow 250ms ease;
+  }
+
+  .card-glow::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    padding: 1px;
+    border-radius: inherit;
+    background: conic-gradient(
+      from var(--angle),
+      transparent 0deg,
+      var(--color-accent) 70deg,
+      transparent 140deg,
+      transparent 360deg
+    );
+    mask:
+      linear-gradient(var(--color-bg) 0 0) content-box,
+      linear-gradient(var(--color-bg) 0 0);
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 250ms ease;
+    pointer-events: none;
+  }
+
+  .card-glow:hover,
+  .card-glow:focus-within {
+    transform: translateY(-4px);
+    border-color: transparent;
+    box-shadow: 0 18px 40px -20px color-mix(in srgb, var(--color-accent) 55%, transparent);
+  }
+
+  .card-glow:hover::before,
+  .card-glow:focus-within::before {
+    opacity: 1;
+    animation: spin-angle 3s linear infinite;
+  }
+
+  .heading-bar::after {
+    content: '';
+    display: block;
+    width: 3rem;
+    height: 3px;
+    margin-top: 0.85rem;
+    border-radius: 9999px;
+    background: var(--color-accent);
+    transform-origin: left;
+  }
+
+  .scroll-progress {
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+
+  .marquee {
+    mask-image: linear-gradient(to right, transparent, var(--color-bg) 12%, var(--color-bg) 88%, transparent);
+  }
+}
+
+@keyframes spin-angle {
+  to {
+    --angle: 360deg;
+  }
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(28px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes grow-x {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes grow-y {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: calc(var(--chars) * 1ch);
+  }
+}
+
+@keyframes breathe {
+  from {
+    opacity: 0.65;
+    transform: scale(1);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.12);
+  }
+}
+
+@keyframes grid-pan {
+  to {
+    background-position: 32px 32px;
+  }
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(8deg);
+  }
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 150% 0;
+  }
+  to {
+    background-position: -50% 0;
+  }
+}
+
+@keyframes flicker {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .type-in {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    vertical-align: bottom;
+    width: 0;
+    animation: typing 700ms steps(var(--chars)) 250ms forwards;
+  }
+
+  .hero-glow {
+    animation: breathe 7s ease-in-out infinite alternate;
+  }
+
+  .grid-pan {
+    animation: grid-pan 18s linear infinite;
+  }
+
+  .marquee-track {
+    animation: marquee 45s linear infinite;
+  }
+
+  .marquee:hover .marquee-track {
+    animation-play-state: paused;
+  }
+
+  .float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .shimmer {
+    background-image: linear-gradient(
+      110deg,
+      transparent 35%,
+      color-mix(in srgb, var(--color-accent) 14%, transparent) 50%,
+      transparent 65%
+    );
+    background-size: 250% 100%;
+    animation: shimmer 3.5s ease-in-out infinite;
+  }
+
+  .flicker {
+    animation: flicker 4s ease-in-out infinite;
+  }
+
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 85%;
+    }
+
+    .heading-bar::after {
+      animation: grow-x linear both;
+      animation-timeline: view();
+      animation-range: entry 40% cover 35%;
+    }
+
+    .draw-y {
+      transform-origin: top;
+      animation: grow-y linear both;
+      animation-timeline: view();
+      animation-range: entry 20% cover 55%;
+    }
+
+    .scroll-progress {
+      transform-origin: left;
+      animation: grow-x linear both;
+      animation-timeline: scroll(root);
+    }
   }
 }

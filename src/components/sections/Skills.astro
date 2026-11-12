@@ -8,51 +8,69 @@ import Tag from '../ui/Tag.astro';
 interface Props {
   locale: Locale;
   skills: CollectionEntry<'skills'>['data'][];
+  variant: 'pro' | 'sheet';
+  index: string;
 }
 
-const { locale, skills } = Astro.props;
+const { locale, skills, variant, index } = Astro.props;
 const t = useTranslations(locale);
+const sheet = variant === 'sheet';
+const id = sheet ? 'sheet' : 'skills';
+const copy = sheet ? t.sheet : t.skills;
 ---
 
 <section
-  id="skills"
-  aria-labelledby="skills-title"
-  class="scroll-mt-16 border-t border-border py-20 md:py-28"
+  id={id}
+  aria-labelledby={`${id}-title`}
+  class:list={['scroll-mt-16 border-t border-border py-20 md:py-28', sheet && 'bg-surface']}
 >
   <div class="mx-auto max-w-6xl px-6">
     <SectionHeading
-      id="skills-title"
-      index="05"
-      eyebrow={t.skills.eyebrow}
-      title={t.skills.title}
-      intro={t.skills.intro}
+      id={`${id}-title`}
+      index={index}
+      eyebrow={copy.eyebrow}
+      title={copy.title}
+      intro={copy.intro}
     />
-    <dl class="mb-8 flex flex-wrap gap-x-10 gap-y-3 font-mono text-sm">
-      <div class="flex gap-2">
-        <dt class="text-text-muted">{t.skills.classLabel}:</dt>
-        <dd>{t.skills.classValue}</dd>
-      </div>
-      <div class="flex gap-2">
-        <dt class="text-text-muted">{t.skills.backgroundLabel}:</dt>
-        <dd>{t.skills.backgroundValue}</dd>
-      </div>
-    </dl>
-    <ul class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-      {skills.map((group) => (
-        <li class="rounded-lg border border-border bg-card p-6 transition-colors duration-200 hover:border-accent/60">
-          <div class="flex items-baseline gap-4">
-            <span class="font-mono text-3xl font-bold text-accent" aria-hidden="true">
-              {localize(group.attribute, locale)}
-            </span>
-            <h3 class="text-lg font-bold">{localize(group.name, locale)}</h3>
+    {sheet && (
+      <dl class="reveal mb-8 flex flex-wrap gap-x-10 gap-y-3 font-mono text-sm">
+        <div class="flex gap-2">
+          <dt class="text-text-muted">{t.sheet.classLabel}:</dt>
+          <dd>{t.sheet.classValue}</dd>
+        </div>
+        <div class="flex gap-2">
+          <dt class="text-text-muted">{t.sheet.backgroundLabel}:</dt>
+          <dd>{t.sheet.backgroundValue}</dd>
+        </div>
+      </dl>
+    )}
+    <ul class:list={['grid gap-5 sm:grid-cols-2', sheet ? 'lg:grid-cols-3' : 'lg:grid-cols-4']}>
+      {skills.map((group, i) => (
+        <li class="reveal">
+          <div class="card-glow group h-full rounded-lg border border-border bg-card p-6">
+            <div class="flex items-baseline gap-4">
+              {sheet ? (
+                <span
+                  class="font-mono text-3xl font-bold text-accent transition-transform duration-300 group-hover:scale-110"
+                  aria-hidden="true"
+                >
+                  {localize(group.attribute, locale)}
+                </span>
+              ) : (
+                <span class="font-mono text-xs text-accent" aria-hidden="true">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+              )}
+              <h3 class="text-lg font-bold">{localize(group.name, locale)}</h3>
+            </div>
+            <ul class="mt-5 flex flex-wrap gap-2">
+              {localize(group.keywords, locale).map((keyword) => (
+                <li>
+                  <Tag>{keyword}</Tag>
+                </li>
+              ))}
+            </ul>
           </div>
-          <ul class="mt-5 flex flex-wrap gap-2">
-            {group.keywords.map((keyword) => (
-              <li>
-                <Tag>{keyword}</Tag>
-              </li>
-            ))}
-          </ul>
         </li>
       ))}
     </ul>

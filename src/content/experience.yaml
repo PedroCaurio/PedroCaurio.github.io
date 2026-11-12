@@ -18,16 +18,44 @@
   highlights:
     pt:
       - Monitoramento de dados em plantas industriais com módulos configuráveis remotamente.
-      - Desenvolvimento de funcionalidades IoT, incluindo firmware para ESP32.
+      - Desenvolvimento de funcionalidades IoT com microcontroladores e processamento de borda.
       - Análise de dados operacionais com algoritmos de Machine Learning e estatística clássica.
       - Orquestração de agentes de IA e automações com spec-driven development, harness de agentes, bots, Cursor e Model Context Protocol (MCP).
       - Configuração de redes e comunicação remota entre dispositivos e sistemas.
       - Desenvolvimento de endpoints e aplicações web.
     en:
       - Monitored data in industrial plants with remotely configurable modules.
-      - Built IoT features, including ESP32 firmware.
+      - Built IoT features with microcontrollers and edge processing.
       - Analyzed operational data with Machine Learning algorithms and classical statistics.
       - Orchestrated AI agents and automations using spec-driven development, agent harnesses, bots, Cursor and the Model Context Protocol (MCP).
       - Configured networks and remote communication between devices and systems.
       - Developed endpoints and web applications.
-  tags: [IoT, ESP32, Machine Learning, Estatística, Agentes de IA, MCP, Cursor, Redes, APIs, Web]
+  tags:
+    pt:
+      [
+        IoT,
+        Microcontroladores,
+        Processamento de borda,
+        Machine Learning,
+        Estatística,
+        Agentes de IA,
+        MCP,
+        Cursor,
+        Redes,
+        APIs,
+        Web,
+      ]
+    en:
+      [
+        IoT,
+        Microcontrollers,
+        Edge computing,
+        Machine Learning,
+        Statistics,
+        AI agents,
+        MCP,
+        Cursor,
+        Networking,
+        APIs,
+        Web,
+      ]

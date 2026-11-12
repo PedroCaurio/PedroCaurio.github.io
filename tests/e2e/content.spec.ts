@@ -18,7 +18,8 @@ test.describe('coleções de conteúdo', () => {
     await expect(pt.getByText('2º lugar geral · Melhor Áudio · Melhor Pitch')).toBeVisible();
   });
 
-  test('não expõe nomes de produtos internos da CESS', async ({ page }) => {
+  test('não expõe nomes de produtos internos da CESS nem cita ESP32', async ({ page }) => {
     await expect(page.locator('body')).not.toContainText(/SGEM/i);
+    await expect(page.locator('body')).not.toContainText(/ESP32/i);
   });
 });

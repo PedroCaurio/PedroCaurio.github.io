@@ -7,9 +7,10 @@ import ButtonLink from '../ui/ButtonLink.astro';
 interface Props {
   locale: Locale;
   profile: CollectionEntry<'profile'>['data'];
+  index: string;
 }
 
-const { locale, profile } = Astro.props;
+const { locale, profile, index } = Astro.props;
 const t = useTranslations(locale);
 ---
 
@@ -18,17 +19,24 @@ const t = useTranslations(locale);
   aria-labelledby="contact-title"
   class="relative scroll-mt-16 overflow-hidden border-t border-border py-24 md:py-32"
 >
-  <div aria-hidden="true" class="bg-grid bg-grid-fade absolute inset-0"></div>
-  <div class="relative mx-auto max-w-3xl px-6 text-center">
+  <div aria-hidden="true" class="bg-grid bg-grid-fade grid-pan absolute inset-0"></div>
+  <div
+    aria-hidden="true"
+    class="hero-glow pointer-events-none absolute top-1/2 left-1/2 size-[36rem] -translate-1/2"
+  ></div>
+  <div class="reveal relative mx-auto max-w-3xl px-6 text-center">
     <p class="font-mono text-sm text-accent" aria-hidden="true">
-      07 // {t.contact.eyebrow}
+      {index} // {t.contact.eyebrow}
     </p>
     <h2 id="contact-title" class="mt-3 text-display font-bold tracking-tight">
       {t.contact.title}
     </h2>
     <p class="mx-auto mt-6 max-w-[52ch] text-lg text-text-muted">{t.contact.text}</p>
     <div class="mt-10 flex justify-center">
-      <ButtonLink href={`mailto:${profile.email}`} class="px-6 py-4 text-base break-all">
+      <ButtonLink
+        href={`mailto:${profile.email}`}
+        class="px-6 py-4 text-base break-all shadow-glow transition-shadow hover:shadow-[0_0_0_1px_var(--color-accent),0_0_40px_-6px_var(--color-accent)]"
+      >
         {profile.email}
       </ButtonLink>
     </div>

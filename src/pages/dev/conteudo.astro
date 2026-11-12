@@ -72,7 +72,7 @@ const locales: Locale[] = ['pt-br', 'en'];
           {skills.map((s) => (
             <p>
               <span class="font-mono text-accent">{localize(s.data.attribute, locale)}</span>{' '}
-              <strong>{localize(s.data.name, locale)}</strong>: {s.data.keywords.join(', ')}
+              <strong>{localize(s.data.name, locale)}</strong>: {localize(s.data.keywords, locale).join(', ')}
             </p>
           ))}
         </div>

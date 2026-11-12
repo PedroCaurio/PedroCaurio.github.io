@@ -1,0 +1,52 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from './layout/Header.astro';
+import Footer from './layout/Footer.astro';
+import PlayHero from './sections/PlayHero.astro';
+import Games from './sections/Games.astro';
+import Skills from './sections/Skills.astro';
+import Tabletop from './sections/Tabletop.astro';
+import Contact from './sections/Contact.astro';
+import { locales, playPath, type Locale } from '../i18n';
+import { useTranslations } from '../i18n/ui';
+import { personJsonLd } from '../lib/jsonld';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const byOrder = <T extends { data: { order: number } }>(a: T, b: T) => a.data.order - b.data.order;
+
+const [profileEntry] = await getCollection('profile');
+const profile = profileEntry.data;
+const experience = (await getCollection('experience')).sort(byOrder).map((entry) => entry.data);
+const education = (await getCollection('education')).sort(byOrder).map((entry) => entry.data);
+const skills = (await getCollection('skills')).sort(byOrder).map((entry) => entry.data);
+const games = (await getCollection('games')).sort(byOrder);
+const systems = (await getCollection('rpg', ({ data }) => !data.draft)).map((entry) => entry.data);
+const jsonLd = personJsonLd({ site: Astro.site!, locale, profile, experience, education, skills });
+---
+
+<BaseLayout
+  title={t.playMeta.title}
+  description={t.playMeta.description}
+  locale={locale}
+  alternates={locales.map((l) => ({ locale: l, href: playPath[l] }))}
+  jsonLd={jsonLd}
+>
+  <Header slot="header" locale={locale} page="play" />
+  <PlayHero
+    locale={locale}
+    gamesCount={games.length}
+    masterYears={profile.rpgMasterYears}
+    systemsCount={systems.filter((s) => s.kind === 'sistema').length}
+  />
+  <Games locale={locale} games={games} index="01" />
+  <Skills locale={locale} skills={skills} variant="sheet" index="02" />
+  <Tabletop locale={locale} systems={systems} masterYears={profile.rpgMasterYears} index="03" />
+  <Contact locale={locale} profile={profile} index="04" />
+  <Footer slot="footer" locale={locale} name={profile.name} />
+</BaseLayout>

@@ -8,7 +8,7 @@
 - 4º ano de **Engenharia de Computação**, coeficiente de rendimento **9,2** — Universidade Federal do Rio Grande (FURG), conclusão em dez/2027.
 - **Técnico em Automação Industrial** — IFRS Campus Rio Grande.
 - Experiência com programação em **Godot** e **Unity**.
-- **Analista de Projetos de Software** — usando arquitetura de IA, spec-driven development, harness de agentes, bots, Cursor, MCP, endpoints, firmware para ESP32, aplicações web, modelos de análise de dados com ML e estatística clássica.
+- **Analista de Projetos de Software** — usando arquitetura de IA, spec-driven development, harness de agentes, bots, Cursor, MCP, endpoints, firmware para microcontroladores, aplicações web, modelos de análise de dados com ML e estatística clássica.
 - **Desenvolvedor de sistemas de RPG de mesa**.
 - **Mestre de RPG de mesa** há mais de 7 anos.
 
@@ -19,7 +19,7 @@
 - Domínio (informação pública do site da CESS): engenharia, automação e análise de dados para **eficiência energética e segurança operacional em refrigeração industrial**.
 - Atuação (informada pelo Pedro):
   - **Monitoramento de dados em plantas industriais** com módulos configuráveis remotamente.
-  - Desenvolvimento de funcionalidades **IoT** (inclui firmware para **ESP32**).
+  - Desenvolvimento de funcionalidades **IoT** com **microcontroladores** e **processamento de borda**.
   - **Análise de dados** com algoritmos de **Machine Learning** e **estatística clássica**.
   - **Orquestração de agentes de IA** e **automações** (arquitetura de IA, spec-driven development, harness, bots, Cursor, MCP).
   - **Configuração de redes e comunicação remota**.
@@ -28,6 +28,7 @@
   - Pode: nome da empresa, cargo, regime, domínio de atuação, tecnologias e tipos de solução em termos genéricos.
   - Não pode: nomes de clientes, dados, métricas internas, arquitetura detalhada, código, screenshots.
   - **Não citar o SGEM** (nem o nome de qualquer produto interno).
+  - **Não citar ESP32** (pedido do Pedro, 12/nov/2026). Falar apenas em **microcontroladores** e **processamento de borda**.
   - Estudos de caso da CESS usam selo "Projeto confidencial" e descrevem problema e abordagem de forma genérica.
 
 ## Formação
@@ -73,7 +74,7 @@ Isso **diverge** do texto enviado agora. **Decisão (12/nov/2026): o site posici
 | --- | --- |
 | IA e agentes | Arquitetura de IA, spec-driven development, harness de agentes, MCP, Cursor, bots |
 | Back-end e web | Endpoints/APIs, FastAPI, SSE, Redis (pub/sub), aplicações web |
-| Embarcados | Firmware ESP32, automação industrial |
+| Embarcados | Firmware para microcontroladores, processamento de borda, automação industrial |
 | Dados | Machine Learning, estatística clássica, análise de dados |
 | Sistemas | Sockets TCP/UDP, sistemas distribuídos, simulação de SO, compiladores (C/Make) |
 | Game dev | Godot (GDScript), Unity (C#, Netcode for GameObjects, Unity Relay), Pyxel (Python), LÖVE (Lua); state machines, sistemas de inventário/quests/diálogo/decisão, VFX |

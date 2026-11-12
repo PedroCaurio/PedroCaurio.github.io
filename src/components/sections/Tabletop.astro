@@ -2,6 +2,7 @@
 import type { CollectionEntry } from 'astro:content';
 import { localize, type Locale } from '../../i18n';
 import { useTranslations } from '../../i18n/ui';
+import D20 from '../ui/D20.astro';
 import SectionHeading from '../ui/SectionHeading.astro';
 import Tag from '../ui/Tag.astro';
 
@@ -9,38 +10,44 @@ interface Props {
   locale: Locale;
   systems: CollectionEntry<'rpg'>['data'][];
   masterYears: number;
+  index: string;
 }
 
-const { locale, systems, masterYears } = Astro.props;
+const { locale, systems, masterYears, index } = Astro.props;
 const t = useTranslations(locale);
 ---
 
 <section
   id="tabletop"
   aria-labelledby="tabletop-title"
-  class="scroll-mt-16 border-t border-border bg-surface py-20 md:py-28"
+  class="relative scroll-mt-16 overflow-hidden border-t border-border py-20 md:py-28"
 >
-  <div class="mx-auto max-w-6xl px-6">
-    <SectionHeading id="tabletop-title" index="06" eyebrow={t.tabletop.eyebrow} title={t.tabletop.title} />
+  <D20 class="float pointer-events-none absolute -top-6 -right-10 size-56 text-accent/10 md:size-72" />
+  <div class="relative mx-auto max-w-6xl px-6">
+    <SectionHeading id="tabletop-title" index={index} eyebrow={t.tabletop.eyebrow} title={t.tabletop.title} />
     <ul class="grid gap-6 md:grid-cols-2">
       {systems.map((system) => (
-        <li class="rounded-lg border border-border bg-card p-6 md:p-8">
-          <p class="flex flex-wrap items-center gap-3 font-mono text-xs text-text-muted">
-            {t.tabletop.system}
-            <Tag variant="accent">{localize(system.status, locale)}</Tag>
-          </p>
-          <h3 class="mt-3 text-2xl font-bold">{system.title}</h3>
-          {system.summary && <p class="mt-3 text-text-muted">{localize(system.summary, locale)}</p>}
+        <li class="reveal">
+          <article class="card-glow group h-full rounded-lg border border-border bg-card p-6 md:p-8">
+            <p class="flex flex-wrap items-center gap-3 font-mono text-xs text-text-muted">
+              {t.tabletop.system}
+              <Tag variant="accent" class="shimmer">
+                {localize(system.status, locale)}
+              </Tag>
+            </p>
+            <h3 class="mt-3 text-2xl font-bold">{system.title}</h3>
+            {system.summary && <p class="mt-3 text-text-muted">{localize(system.summary, locale)}</p>}
+          </article>
         </li>
       ))}
-      <li class="rounded-lg border border-border bg-card p-6 md:p-8">
-        <div class="flex items-baseline gap-4">
-          <span class="font-mono text-3xl font-bold text-accent" aria-hidden="true">
-            {masterYears}+
-          </span>
-          <h3 class="text-2xl font-bold">{t.tabletop.masterTitle}</h3>
-        </div>
-        <p class="mt-3 text-text-muted">{t.tabletop.masterText(masterYears)}</p>
+      <li class="reveal">
+        <article class="card-glow group h-full rounded-lg border border-border bg-card p-6 md:p-8">
+          <div class="flex items-center gap-4">
+            <D20 class="size-10 shrink-0 text-accent transition-transform duration-700 ease-out-soft group-hover:rotate-[360deg]" />
+            <h3 class="text-2xl font-bold">{t.tabletop.masterTitle}</h3>
+          </div>
+          <p class="mt-3 text-text-muted">{t.tabletop.masterText(masterYears)}</p>
+        </article>
       </li>
     </ul>
   </div>

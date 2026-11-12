@@ -20,6 +20,7 @@ export function isLocale(value: string | undefined): value is Locale {
 }
 
 export const homePath: Record<Locale, string> = { 'pt-br': '/', en: '/en/' };
+export const playPath: Record<Locale, string> = { 'pt-br': '/jogos/', en: '/en/games/' };
 
 export function otherLocale(locale: Locale): Locale {
   return locale === 'en' ? 'pt-br' : 'en';

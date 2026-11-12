@@ -16,6 +16,12 @@ alwaysApply: false
 
 - Pode: empresa, cargo, regime (CLT, remoto), domínio (refrigeração industrial / eficiência energética), tipos de trabalho e tecnologias em termos genéricos.
 - Proibido: clientes, dados, métricas internas, arquitetura detalhada, código, screenshots e **nomes de produtos internos (ex.: SGEM)**. Há teste automático para isso.
+- **Não citar ESP32** (nem modelos de chip). Use "microcontroladores" e "processamento de borda" (EN: "microcontrollers", "edge processing"). Também há teste automático.
+
+## Separação profissional × jogos
+
+- A home (`/`, `/en/`) é só profissional. Jogos, RPG e a ficha com atributos ficam em `/jogos/` e `/en/games/`.
+- Grupos de skill com `track: play` aparecem só na ficha da página de jogos.
 
 ## Jogos
 

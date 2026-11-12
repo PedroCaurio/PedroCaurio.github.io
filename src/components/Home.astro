@@ -7,11 +7,11 @@ import Hero from './sections/Hero.astro';
 import About from './sections/About.astro';
 import Experience from './sections/Experience.astro';
 import Projects from './sections/Projects.astro';
-import Games from './sections/Games.astro';
 import Skills from './sections/Skills.astro';
-import Tabletop from './sections/Tabletop.astro';
+import PlayTeaser from './sections/PlayTeaser.astro';
 import Contact from './sections/Contact.astro';
-import { contentKey, homePath, locales, type Locale } from '../i18n';
+import Marquee from './ui/Marquee.astro';
+import { contentKey, homePath, localize, locales, type Locale } from '../i18n';
 import { useTranslations } from '../i18n/ui';
 import { personJsonLd } from '../lib/jsonld';
 
@@ -28,7 +28,7 @@ const profile = profileEntry.data;
 const experience = (await getCollection('experience')).sort(byOrder).map((entry) => entry.data);
 const education = (await getCollection('education')).sort(byOrder).map((entry) => entry.data);
 const skills = (await getCollection('skills')).sort(byOrder).map((entry) => entry.data);
-const games = (await getCollection('games')).sort(byOrder);
+const proSkills = skills.filter((group) => group.track === 'professional');
 const projects = (
   await getCollection(
     'projects',
@@ -37,8 +37,9 @@ const projects = (
 )
   .sort(byOrder)
   .map((entry) => entry.data);
-const systems = (await getCollection('rpg', ({ data }) => !data.draft)).map((entry) => entry.data);
 
+const degree = education.find((ed) => ed.expected);
+const technical = education.find((ed) => !ed.expected);
 const github = profile.profiles.find((p) => p.network === 'GitHub');
 const jsonLd = personJsonLd({ site: Astro.site!, locale, profile, experience, education, skills });
 ---
@@ -50,21 +51,20 @@ const jsonLd = personJsonLd({ site: Astro.site!, locale, profile, experience, ed
   alternates={locales.map((l) => ({ locale: l, href: homePath[l] }))}
   jsonLd={jsonLd}
 >
-  <Header slot="header" locale={locale} />
+  <Header slot="header" locale={locale} page="pro" />
   <Hero
     locale={locale}
     profile={profile}
     job={experience.find((job) => !job.endDate)}
-    degree={education.find((ed) => ed.score)}
-    quest={systems[0]}
-    gamesCount={games.length}
+    degree={degree}
+    technical={technical}
   />
+  <Marquee items={proSkills.flatMap((group) => localize(group.keywords, locale))} />
   <About locale={locale} profile={profile} education={education} />
   <Experience locale={locale} experience={experience} />
   <Projects locale={locale} projects={projects} githubUrl={github?.url} />
-  <Games locale={locale} games={games} />
-  <Skills locale={locale} skills={skills} />
-  <Tabletop locale={locale} systems={systems} masterYears={profile.rpgMasterYears} />
-  <Contact locale={locale} profile={profile} />
+  <Skills locale={locale} skills={proSkills} variant="pro" index="04" />
+  <PlayTeaser locale={locale} />
+  <Contact locale={locale} profile={profile} index="05" />
   <Footer slot="footer" locale={locale} name={profile.name} />
 </BaseLayout>

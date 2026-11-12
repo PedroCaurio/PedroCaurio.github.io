@@ -1,37 +1,60 @@
-# "attribute" é o toque de RPG do conceito híbrido (ficha de personagem). Sem níveis ou porcentagens.
+# "attribute" é o toque de RPG (ficha de personagem na página de jogos). Sem níveis ou porcentagens.
+# "track": professional aparece na home; play só na ficha da página de jogos (que mostra todos).
 - id: ia
   order: 1
   attribute: { pt: INT, en: INT }
   name: { pt: IA & Agentes, en: AI & Agents }
   keywords:
-    [Orquestração de agentes, Spec-driven development, Model Context Protocol (MCP), Cursor, Automações, Bots]
+    pt:
+      [
+        Orquestração de agentes,
+        Spec-driven development,
+        Model Context Protocol (MCP),
+        Cursor,
+        Automações,
+        Bots,
+      ]
+    en: [Agent orchestration, Spec-driven development, Model Context Protocol (MCP), Cursor, Automation, Bots]
 
 - id: dados
   order: 2
   attribute: { pt: SAB, en: WIS }
   name: { pt: Dados, en: Data }
-  keywords: [Machine Learning, Estatística clássica, Análise de dados, Python]
+  keywords:
+    pt: [Machine Learning, Estatística clássica, Análise de dados, Python]
+    en: [Machine Learning, Classical statistics, Data analysis, Python]
 
 - id: iot
   order: 3
   attribute: { pt: CON, en: CON }
   name: { pt: IoT & Embarcados, en: IoT & Embedded }
-  keywords: [ESP32, Firmware, Automação industrial, Redes, Comunicação remota]
+  keywords:
+    pt:
+      [Microcontroladores, Processamento de borda, Firmware, Automação industrial, Redes, Comunicação remota]
+    en: [Microcontrollers, Edge processing, Firmware, Industrial automation, Networking, Remote communication]
 
 - id: sistemas
   order: 4
   attribute: { pt: FOR, en: STR }
   name: { pt: Back-end & Sistemas, en: Back-end & Systems }
-  keywords: [APIs e endpoints, FastAPI, Redis, Sockets TCP/UDP, Sistemas distribuídos, C, C++]
+  keywords:
+    pt: [APIs e endpoints, FastAPI, Redis, Sockets TCP/UDP, Sistemas distribuídos, C, C++]
+    en: [APIs and endpoints, FastAPI, Redis, TCP/UDP sockets, Distributed systems, C, C++]
 
 - id: games
   order: 5
   attribute: { pt: DES, en: DEX }
   name: { pt: Game Dev, en: Game Dev }
-  keywords: [Godot (GDScript), Unity (C#), Netcode + Unity Relay, State machines, VFX, Pyxel, LÖVE (Lua)]
+  track: play
+  keywords:
+    pt: [Godot (GDScript), Unity (C#), Netcode + Unity Relay, State machines, VFX, Pyxel, LÖVE (Lua)]
+    en: [Godot (GDScript), Unity (C#), Netcode + Unity Relay, State machines, VFX, Pyxel, LÖVE (Lua)]
 
 - id: mesa
   order: 6
   attribute: { pt: CAR, en: CHA }
   name: { pt: Mesa & Pessoas, en: Table & People }
-  keywords: [Mestre de RPG há 7+ anos, Design de sistemas de RPG, Narrativa, Facilitação de grupos]
+  track: play
+  keywords:
+    pt: [Mestre de RPG há 7+ anos, Design de sistemas de RPG, Narrativa, Facilitação de grupos]
+    en: [Game master for 7+ years, RPG system design, Storytelling, Group facilitation]

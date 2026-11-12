@@ -23,10 +23,10 @@ const contributions = localize(data.contributions, locale);
 <article
   data-kind="game"
   data-game={game.id}
-  class="group flex h-full flex-col overflow-hidden rounded-lg border border-border bg-card transition-colors duration-200 hover:border-accent/60"
+  class="card-glow group flex h-full flex-col rounded-lg border border-border bg-card"
 >
   {cover && (
-    <div class="aspect-video overflow-hidden border-b border-border bg-surface">
+    <div class="relative aspect-video overflow-hidden rounded-t-lg border-b border-border bg-surface">
       <Image
         src={cover}
         alt={`${t.games.coverAlt} ${data.title}`}
@@ -37,11 +37,17 @@ const contributions = localize(data.contributions, locale);
             : '(min-width: 1024px) 280px, (min-width: 768px) 50vw, 100vw'
         }
         class:list={[
-          'size-full transition-transform duration-500 ease-out-soft group-hover:scale-[1.03]',
+          'size-full transition-transform duration-500 ease-out-soft group-hover:scale-[1.06]',
           data.coverFit === 'contain' ? 'object-contain p-4' : 'object-cover',
         ]}
         loading="lazy"
       />
+      <div
+        aria-hidden="true"
+        class="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+      >
+        <div class="scanlines flicker size-full"></div>
+      </div>
     </div>
   )}
   <div class:list={['flex flex-1 flex-col', featured ? 'p-6' : 'p-5']}>
@@ -54,7 +60,9 @@ const contributions = localize(data.contributions, locale);
       <ul class="mt-3 flex flex-wrap gap-2" aria-label={data.jam.name}>
         {localize(data.jam.awards, locale).map((award) => (
           <li>
-            <Tag variant="accent">{award}</Tag>
+            <Tag variant="accent" class="shimmer">
+              {award}
+            </Tag>
           </li>
         ))}
       </ul>

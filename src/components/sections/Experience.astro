@@ -31,56 +31,85 @@ const period = (job: Props['experience'][number]) => {
       eyebrow={t.experience.eyebrow}
       title={t.experience.title}
     />
-    <ol class="space-y-6">
-      {experience.map((job) => (
-        <li class="grid gap-6 rounded-lg border border-border bg-card p-6 md:grid-cols-[12rem_1fr] md:gap-10 md:p-8">
-          <div class="font-mono text-sm">
-            {period(job) && <p class="text-accent">{period(job)}</p>}
-            <p class="mt-1 text-text-muted">{localize(job.employment, locale)}</p>
-            {job.confidential && (
-              <p class="mt-4">
-                <Tag variant="accent">{t.experience.confidential}</Tag>
-              </p>
-            )}
-          </div>
-          <div>
-            <h3 class="text-xl font-bold">{localize(job.position, locale)}</h3>
-            <p class="mt-1 text-text-muted">
-              {job.url ? (
-                <a
-                  href={job.url}
-                  class="underline-offset-4 transition-colors hover:text-accent hover:underline"
-                >
-                  {job.organization} <span aria-hidden="true">↗</span>
-                </a>
-              ) : (
-                job.organization
-              )}
-            </p>
-            <p class="mt-4 max-w-[68ch]">{localize(job.summary, locale)}</p>
-            <ul class="mt-5 space-y-2">
-              {localize(job.highlights, locale).map((highlight) => (
-                <li class="flex gap-3 text-text-muted">
-                  <span class="font-mono text-accent" aria-hidden="true">
-                    ▹
-                  </span>
-                  <span>{highlight}</span>
-                </li>
-              ))}
-            </ul>
-            {job.tags.length > 0 && (
-              <ul class="mt-6 flex flex-wrap gap-2">
-                {job.tags.map((tag) => (
-                  <li>
-                    <Tag>{tag}</Tag>
-                  </li>
-                ))}
-              </ul>
-            )}
-            {job.confidential && <p class="mt-6 text-sm text-text-muted">{t.experience.confidentialNote}</p>}
-          </div>
-        </li>
-      ))}
-    </ol>
+    <div class="relative md:pl-10">
+      <div aria-hidden="true" class="absolute top-2 bottom-2 left-[0.6875rem] hidden w-px md:block">
+        <span class="draw-y block h-full w-full bg-linear-to-b from-accent via-accent/40 to-transparent"></span>
+      </div>
+      <ol class="space-y-6">
+        {experience.map((job) => (
+          <li class="reveal relative">
+            <span
+              aria-hidden="true"
+              class="absolute top-9 -left-10 hidden size-6 items-center justify-center rounded-full border border-accent/50 bg-bg md:flex"
+            >
+              {!job.endDate && <span class="absolute size-3 animate-ping rounded-full bg-accent/60" />}
+              <span class="relative size-2.5 rounded-full bg-accent" />
+            </span>
+            <article class="card-glow grid gap-6 rounded-lg border border-border bg-card p-6 md:grid-cols-[12rem_1fr] md:gap-10 md:p-8">
+              <div class="font-mono text-sm">
+                {period(job) && (
+                  <p class="flex items-center gap-2 text-accent">
+                    {!job.endDate && (
+                      <span aria-hidden="true" class="relative flex size-2 md:hidden">
+                        <span class="absolute inline-flex size-full animate-ping rounded-full bg-accent/70" />
+                        <span class="relative inline-flex size-2 rounded-full bg-accent" />
+                      </span>
+                    )}
+                    {period(job)}
+                  </p>
+                )}
+                <p class="mt-1 text-text-muted">{localize(job.employment, locale)}</p>
+                {job.confidential && (
+                  <p class="mt-4">
+                    <Tag variant="accent">{t.experience.confidential}</Tag>
+                  </p>
+                )}
+              </div>
+              <div>
+                <h3 class="text-xl font-bold">{localize(job.position, locale)}</h3>
+                <p class="mt-1 text-text-muted">
+                  {job.url ? (
+                    <a
+                      href={job.url}
+                      class="underline-offset-4 transition-colors hover:text-accent hover:underline"
+                    >
+                      {job.organization} <span aria-hidden="true">↗</span>
+                    </a>
+                  ) : (
+                    job.organization
+                  )}
+                </p>
+                <p class="mt-4 max-w-[68ch]">{localize(job.summary, locale)}</p>
+                <ul class="mt-5 space-y-2">
+                  {localize(job.highlights, locale).map((highlight) => (
+                    <li class="group/item flex gap-3 text-text-muted transition-colors duration-200 hover:text-text">
+                      <span
+                        class="font-mono text-accent transition-transform duration-200 group-hover/item:translate-x-1"
+                        aria-hidden="true"
+                      >
+                        ▹
+                      </span>
+                      <span>{highlight}</span>
+                    </li>
+                  ))}
+                </ul>
+                {localize(job.tags, locale).length > 0 && (
+                  <ul class="mt-6 flex flex-wrap gap-2">
+                    {localize(job.tags, locale).map((tag) => (
+                      <li>
+                        <Tag>{tag}</Tag>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                {job.confidential && (
+                  <p class="mt-6 text-sm text-text-muted">{t.experience.confidentialNote}</p>
+                )}
+              </div>
+            </article>
+          </li>
+        ))}
+      </ol>
+    </div>
   </div>
 </section>

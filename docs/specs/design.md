@@ -78,7 +78,8 @@ flowchart LR
 
 | Rota | Conteúdo | Requisitos |
 | --- | --- | --- |
-| `/` | Hero, Sobre, Experiência, Projetos, Jogos, RPG, Skills, Contato (one-page com âncoras) | R-01..R-08 |
+| `/` | Portfólio profissional: Hero, Sobre, Experiência, Projetos, Habilidades (`track: professional`), chamada para Jogos & RPG, Contato | R-01..R-04, R-07, R-08 |
+| `/jogos/` | Jogos & RPG: hero próprio, Jogos, Ficha de personagem (todas as skills com atributo), Mesa de RPG, Contato | R-05, R-06 |
 | `/projetos/[slug]` | Estudo de caso | R-04, R-21 |
 | `/jogos/[slug]` | Detalhe do jogo (só destaques) | R-05, R-21 |
 | `/cv` | Currículo HTML imprimível | R-10 |
@@ -95,9 +96,9 @@ Fonte de verdade: [`src/content.config.ts`](../../src/content.config.ts). Resumo
 | Coleção | Arquivo | Campos principais |
 | --- | --- | --- |
 | `profile` | `profile.yaml` | name, fullName, label\*, summary\*, email, profiles[], rpgMasterYears |
-| `experience` | `experience.yaml` | organization, url, position\*, employment\*, startDate?, endDate?, confidential, summary\*, highlights\*[], tags[] |
+| `experience` | `experience.yaml` | organization, url, position\*, employment\*, startDate?, endDate?, confidential, summary\*, highlights\*[], tags\*[] |
 | `education` | `education.yaml` | institution, shortName, area\*, studyType\*, startDate?, endDate?, expected, score? |
-| `skills` | `skills.yaml` | attribute\* (ficha de RPG), name\*, keywords[] |
+| `skills` | `skills.yaml` | attribute\* (ficha de RPG), name\*, track (`professional`\|`play`), keywords\*[] |
 | `games` | `games.yaml` | title, engine, language, genre\*, summary\*, role\*, contributions\*[], team[], jam?{name, awards\*[]}, noGenerativeAi, links{itch, repo?}, playableInBrowser, featured, order, coverFit (`cover`\|`contain`; capa em `src/assets/games/<id>.png`) |
 | `projects` | `projects/{pt,en}/<slug>.md` | title, summary, role, stack[], links, confidential, draft, featured, order + corpo (estudo de caso) |
 | `rpg` | `rpg.yaml` | title, kind, status\*, summary\*?, draft |

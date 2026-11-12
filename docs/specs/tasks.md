@@ -32,7 +32,9 @@ Fase 3 do Spec-Driven Development. Cada tarefa termina com a verificação indic
 
 - [~] T-30 `BaseLayout` com meta, OG, canonical, `hreflang`, JSON-LD `Person` e skip link. Falta: OG PNG e passar no validador de rich results.
 - [x] T-31 Componentes `ui/` (`SectionHeading`, `Tag`, `ButtonLink`) e `layout/` (`Header`, `Footer`).
-- [x] T-32 Home em `/` e `/en/` (`src/components/Home.astro` + `sections/`): hero com terminal e números, sobre, experiência, projetos, jogos, ficha de personagem, mesa de RPG, contato. *Verif.: 38 testes (e2e R-01, R-03, R-05, R-07, R-08, R-13, R-20 + axe) em 390/1280; screenshots conferidos.* Botão "Baixar CV" do R-01 entra com T-34.
+- [x] T-32 Home profissional em `/` e `/en/` (`src/components/Home.astro` + `sections/`): hero com terminal e números, letreiro de tecnologias, sobre, experiência, projetos, habilidades, chamada para Jogos & RPG, contato. Botão "Baixar CV" do R-01 entra com T-34.
+- [x] T-32b Página Jogos & RPG em `/jogos/` e `/en/games/` (`src/components/PlayPage.astro`): hero próprio com d20, jogos, ficha de personagem completa, mesa de RPG. Separada da home a pedido do Pedro.
+- [x] T-32c Animações em CSS puro (ver DESIGN.md › Movimento), todas neutralizadas por `prefers-reduced-motion`. *Verif.: 54 testes (e2e R-01, R-03, R-05..R-08, R-13, R-20, termos proibidos SGEM/ESP32 + axe) em 390/1280; hover e animações conferidos no navegador.*
 - [ ] T-33 `/projetos/[slug]` e `/jogos/[slug]`. *Verif.: e2e R-04/R-05.*
 - [ ] T-34 `/cv` + `build-pdf.ts`. *Verif.: copiar/colar texto do PDF mantém ordem; R-09/R-10.*
 - [ ] T-35 `/como-foi-feito` (R-12).
@@ -42,7 +44,7 @@ Fase 3 do Spec-Driven Development. Cada tarefa termina com a verificação indic
 
 - [ ] T-40 `/llms.txt`, `/resume.json` (validar contra schema JSON Resume), sitemap, robots, OG PNG.
 - [ ] T-41 `CommandPalette` (R-11). *Verif.: teclado, leitor de tela, Esc, sem JS o site continua ok.*
-- [~] T-42 i18n EN (R-13): home em `/en/`, seletor de idioma e `hreflang` prontos; textos de interface em `src/i18n/ui.ts`. Falta estender às páginas futuras.
+- [~] T-42 i18n EN (R-13): `/en/` e `/en/games/`, seletor de idioma e `hreflang` prontos; tags e palavras-chave de skills agora localizadas; textos de interface em `src/i18n/ui.ts`. Falta estender às páginas futuras.
 
 ## Fase 5 — Polimento e lançamento
 

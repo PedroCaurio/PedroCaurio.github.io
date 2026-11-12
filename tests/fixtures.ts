@@ -20,6 +20,8 @@ export const test = base.extend<Fixtures>({
 
   expectNoA11yViolations: async ({ page }, use) => {
     await use(async () => {
+      // Animações de entrada deixam elementos semitransparentes; o axe avalia o estado final.
+      await page.emulateMedia({ reducedMotion: 'reduce' });
       const results = await new AxeBuilder({ page })
         .withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa'])
         .analyze();

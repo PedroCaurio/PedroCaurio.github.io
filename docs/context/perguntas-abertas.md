@@ -23,7 +23,7 @@ Responda direto neste arquivo ou no chat. O que já foi decidido está em [perfi
 4. Que tipo de oportunidade você quer atrair? (estágio, júnior, pesquisa, freelance, internacional/remoto) — muda o texto do hero.
 5. **Elementomaquia:** estágio (regras escritas, playtests) e se há material publicável.
 7. Algum resultado da CESS que possa ser dito de forma genérica e aproximada (ex.: "reduziu em ~X% o tempo de análise")?
-8. Algo de ESP32 / ML / agentes fora da CESS que possa ser público? Senão, vale criar 1 repositório demonstrativo.
+8. Algo de microcontroladores / ML / agentes fora da CESS que possa ser público? Senão, vale criar 1 repositório demonstrativo.
 9. Papéis dos colegas no Molten Metal (mad, Monorelh4, 0utro, Ito, Juliana Acunha), para os créditos.
 10. O repositório `oficina` (Unity/C#) é o quê?
 11. Vídeos/gravações de gameplay dos jogos.

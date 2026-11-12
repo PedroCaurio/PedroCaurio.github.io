@@ -3,27 +3,34 @@ import '@fontsource/space-mono/400.css';
 import '@fontsource/space-mono/700.css';
 import '@fontsource-variable/space-grotesk';
 import '../styles/global.css';
+import { defaultLocale, htmlLang, type Locale } from '../i18n';
+import { useTranslations } from '../i18n/ui';
 
 interface Props {
   title: string;
   description: string;
-  lang?: 'pt-BR' | 'en';
+  locale?: Locale;
+  alternates?: { locale: Locale; href: string }[];
+  jsonLd?: object;
   noindex?: boolean;
 }
 
-const { title, description, lang = 'pt-BR', noindex = false } = Astro.props;
+const { title, description, locale = defaultLocale, alternates = [], jsonLd, noindex = false } = Astro.props;
+const t = useTranslations(locale);
 const canonical = new URL(Astro.url.pathname, Astro.site);
-const skipLabel = lang === 'en' ? 'Skip to content' : 'Pular para o conteúdo';
 ---
 
 <!doctype html>
-<html lang={lang}>
+<html lang={htmlLang[locale]}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    {alternates.map((alt) => (
+      <link rel="alternate" hreflang={htmlLang[alt.locale]} href={new URL(alt.href, Astro.site)} />
+    ))}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <meta name="theme-color" content="#121212" />
@@ -32,17 +39,21 @@ const skipLabel = lang === 'en' ? 'Skip to content' : 'Pular para o conteúdo';
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={htmlLang[locale].replace('-', '_')} />
     <meta name="generator" content={Astro.generator} />
+    {jsonLd && <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
   </head>
   <body class="min-h-dvh bg-bg text-text">
     <a
       href="#conteudo"
       class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:rounded-md focus:bg-accent focus:px-4 focus:py-2 focus:font-mono focus:text-on-accent"
     >
-      {skipLabel}
+      {t.skipLink}
     </a>
+    <slot name="header" />
     <main id="conteudo">
       <slot />
     </main>
+    <slot name="footer" />
   </body>
 </html>

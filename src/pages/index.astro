@@ -1,22 +1,5 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import Home from '../components/Home.astro';
 ---
 
-<BaseLayout
-  title="Pedro Caurio — Engenharia de Software & IA"
-  description="Portfólio e currículo de Pedro Caurio: engenharia de computação, arquitetura de IA com agentes, jogos e sistemas de RPG."
->
-  <section class="bg-grid flex min-h-dvh items-center">
-    <div class="mx-auto w-full max-w-5xl px-6 py-24">
-      <p class="font-mono text-sm text-accent">&gt; whoami</p>
-      <h1 class="mt-4 text-display font-bold tracking-tight">Pedro Caurio</h1>
-      <p class="mt-6 max-w-[68ch] text-lg text-text-muted">
-        Engenharia de Computação · Arquitetura de IA com agentes · Jogos e sistemas de RPG
-      </p>
-      <p class="mt-10 inline-flex items-center gap-2 rounded-md border border-border bg-card px-4 py-2 font-mono text-sm text-text-muted">
-        <span class="size-2 rounded-full bg-accent" aria-hidden="true"></span>
-        site em construção
-      </p>
-    </div>
-  </section>
-</BaseLayout>
+<Home locale="pt-br" />

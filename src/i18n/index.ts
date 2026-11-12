@@ -18,3 +18,9 @@ export function localize<T>(value: Record<ContentKey, T>, locale: Locale): T {
 export function isLocale(value: string | undefined): value is Locale {
   return locales.includes(value as Locale);
 }
+
+export const homePath: Record<Locale, string> = { 'pt-br': '/', en: '/en/' };
+
+export function otherLocale(locale: Locale): Locale {
+  return locale === 'en' ? 'pt-br' : 'en';
+}

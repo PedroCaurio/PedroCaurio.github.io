@@ -1,0 +1,131 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { localize, type Locale } from '../../i18n';
+import { formatDecimal, useTranslations } from '../../i18n/ui';
+import ButtonLink from '../ui/ButtonLink.astro';
+
+interface Props {
+  locale: Locale;
+  profile: CollectionEntry<'profile'>['data'];
+  job?: CollectionEntry<'experience'>['data'];
+  degree?: CollectionEntry<'education'>['data'];
+  quest?: CollectionEntry<'rpg'>['data'];
+  gamesCount: number;
+}
+
+const { locale, profile, job, degree, quest, gamesCount } = Astro.props;
+const t = useTranslations(locale);
+const link = (network: string) => profile.profiles.find((p) => p.network === network);
+const github = link('GitHub');
+const linkedin = link('LinkedIn');
+
+const rows = [
+  job && {
+    key: t.hero.rows.role,
+    value: `${localize(job.position, locale)} @ ${job.organization.split(' — ')[0]}`,
+  },
+  job && { key: t.hero.rows.mode, value: localize(job.employment, locale) },
+  { key: t.hero.rows.focus, value: t.hero.focusValue },
+  degree && { key: t.hero.rows.education, value: `${localize(degree.area, locale)} · ${degree.shortName}` },
+  quest && {
+    key: t.hero.rows.quest,
+    value: `${quest.title} (${localize(quest.status, locale).toLowerCase()})`,
+  },
+].filter((row): row is { key: string; value: string } => Boolean(row));
+
+const stats = [
+  degree?.score && { value: formatDecimal(degree.score, locale), label: t.stats.gpa },
+  { value: String(gamesCount), label: t.stats.games },
+  { value: `${profile.rpgMasterYears}+`, label: t.stats.rpg },
+  { value: t.stats.jamValue, label: t.stats.jam },
+].filter((stat): stat is { value: string; label: string } => Boolean(stat));
+---
+
+<section aria-labelledby="hero-title" class="relative overflow-hidden border-b border-border">
+  <div aria-hidden="true" class="bg-grid bg-grid-fade absolute inset-0"></div>
+  <div
+    aria-hidden="true"
+    class="hero-glow pointer-events-none absolute -top-40 left-1/2 size-[44rem] -translate-x-1/2 lg:left-auto lg:-right-40 lg:translate-x-0"
+  ></div>
+
+  <div class="relative mx-auto grid max-w-6xl gap-12 px-6 pt-16 pb-14 md:pt-24 lg:grid-cols-[1.15fr_1fr] lg:items-center lg:gap-16 lg:pb-20">
+    <div>
+      <p class="animate-fade-up font-mono text-sm text-accent">
+        <span aria-hidden="true">&gt; </span>
+        {t.hero.prompt}
+      </p>
+      <h1
+        id="hero-title"
+        class="mt-4 animate-fade-up text-display font-bold tracking-tight [animation-delay:80ms]"
+      >
+        {profile.name}
+      </h1>
+      <p class="mt-4 animate-fade-up font-mono text-base text-accent [animation-delay:160ms] md:text-lg">
+        {localize(profile.label, locale)}
+      </p>
+      <p class="mt-6 max-w-[56ch] animate-fade-up text-lg text-text-muted [animation-delay:240ms]">
+        {t.hero.pitch}
+      </p>
+      <div class="mt-8 flex animate-fade-up flex-wrap gap-3 [animation-delay:320ms]">
+        <ButtonLink href={`mailto:${profile.email}`}>{t.hero.ctaEmail}</ButtonLink>
+        {github && (
+          <ButtonLink href={github.url} variant="ghost" external rel="me">
+            GitHub
+          </ButtonLink>
+        )}
+        {linkedin && (
+          <ButtonLink href={linkedin.url} variant="ghost" external rel="me">
+            LinkedIn
+          </ButtonLink>
+        )}
+      </div>
+    </div>
+
+    <div class="animate-fade-up rounded-lg border border-border bg-surface/90 font-mono text-sm shadow-2xl backdrop-blur-sm [animation-delay:400ms]">
+      <div class="flex items-center gap-2 border-b border-border px-4 py-3" aria-hidden="true">
+        <span class="size-3 rounded-full bg-accent"></span>
+        <span class="size-3 rounded-full bg-border"></span>
+        <span class="size-3 rounded-full bg-border"></span>
+        <span class="ml-3 text-xs text-text-muted">{t.hero.terminalTitle}</span>
+      </div>
+      <div class="p-5">
+        <p class="text-text-muted">
+          <span class="mr-2 text-accent" aria-hidden="true">
+            $
+          </span>
+          {t.hero.command}
+        </p>
+        <dl class="mt-4 grid grid-cols-[auto_1fr] gap-x-4 gap-y-2.5">
+          {rows.map((row) => (
+            <>
+              <dt class="text-accent">{row.key}</dt>
+              <dd class="text-text">{row.value}</dd>
+            </>
+          ))}
+        </dl>
+        <p class="mt-4" aria-hidden="true">
+          <span class="text-accent">$</span>
+          <span class="inline-block h-4 w-2 translate-y-0.5 animate-blink bg-accent"></span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="relative border-t border-border bg-surface/60">
+    <dl class="mx-auto grid max-w-6xl grid-cols-2 px-6 md:grid-cols-4">
+      {stats.map((stat, i) => (
+        <div
+          class:list={[
+            'flex flex-col-reverse justify-end gap-1 py-6',
+            i % 2 === 1 && 'pl-6 max-md:border-l max-md:border-border',
+            i > 0 && 'md:border-l md:border-border md:pl-6',
+            i > 1 && 'max-md:border-t max-md:border-border',
+          ]}
+        >
+          <dt class="text-sm text-text-muted">{stat.label}</dt>
+          <dd class="font-mono text-3xl font-bold text-text">{stat.value}</dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</section>

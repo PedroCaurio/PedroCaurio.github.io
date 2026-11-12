@@ -14,10 +14,11 @@
 
 ## Experiência profissional
 
-**Analista de Projetos de Software — CESS (Computational Energy Saving Solutions)** · [cess.ind.br](https://cess.ind.br) · **CLT, 100% remoto** · início **(confirmar mês/ano)**
+**Analista de Projetos de Software — CESS (Computational Energy Saving Solutions)** · [cess.ind.br](https://cess.ind.br) · **CLT, 100% remoto** · desde **jun/2025**
 
 - Domínio (informação pública do site da CESS): engenharia, automação e análise de dados para **eficiência energética e segurança operacional em refrigeração industrial**.
 - Atuação (informada pelo Pedro):
+  - **Monitoramento de dados em plantas industriais** com módulos configuráveis remotamente.
   - Desenvolvimento de funcionalidades **IoT** (inclui firmware para **ESP32**).
   - **Análise de dados** com algoritmos de **Machine Learning** e **estatística clássica**.
   - **Orquestração de agentes de IA** e **automações** (arquitetura de IA, spec-driven development, harness, bots, Cursor, MCP).
@@ -34,11 +35,11 @@
 | Curso | Instituição | Período | Observação |
 | --- | --- | --- | --- |
 | Bacharelado em Engenharia de Computação | Universidade Federal do Rio Grande (**FURG**) | conclusão prevista **dez/2027** | 4º ano, CR **9,2** (escala 0–10, **confirmar escala**) |
-| Técnico em Automação Industrial | Instituto Federal do Rio Grande do Sul (**IFRS**) — Campus Rio Grande | ano **(confirmar)** | |
+| Técnico em Automação Industrial | Instituto Federal do Rio Grande do Sul (**IFRS**) — Campus Rio Grande | concluído em **dez/2022** | |
 
 ## RPG de mesa
 
-- Sistema em desenvolvimento: **Elementomaquia** (detalhes — gênero, mecânica central, material publicável — **a confirmar**).
+- Sistema em desenvolvimento: **Elementomaquia** — sistema de fantasia focado em **magias elementais** e mecânica de **pool de dados**. Estágio de desenvolvimento e material publicável ainda não informados.
 - Mestre de RPG de mesa há mais de 7 anos.
 
 ## Links

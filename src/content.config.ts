@@ -84,6 +84,7 @@ const games = defineCollection({
     noGenerativeAi: z.boolean().default(false),
     links: z.object({ itch: z.url(), repo: z.url().optional() }),
     playableInBrowser: z.boolean().default(false),
+    coverFit: z.enum(['cover', 'contain']).default('cover'),
   }),
 });
 

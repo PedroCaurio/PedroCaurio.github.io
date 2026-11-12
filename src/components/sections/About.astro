@@ -1,0 +1,51 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { localize, type Locale } from '../../i18n';
+import { formatDecimal, formatYearMonth, useTranslations } from '../../i18n/ui';
+import SectionHeading from '../ui/SectionHeading.astro';
+
+interface Props {
+  locale: Locale;
+  profile: CollectionEntry<'profile'>['data'];
+  education: CollectionEntry<'education'>['data'][];
+}
+
+const { locale, profile, education } = Astro.props;
+const t = useTranslations(locale);
+---
+
+<section id="about" aria-labelledby="about-title" class="scroll-mt-16 py-20 md:py-28">
+  <div class="mx-auto max-w-6xl px-6">
+    <SectionHeading id="about-title" index="01" eyebrow={t.about.eyebrow} title={t.about.title} />
+    <div class="grid gap-10 lg:grid-cols-[1.4fr_1fr] lg:gap-16">
+      <p class="max-w-[64ch] text-lg leading-relaxed text-text">{localize(profile.summary, locale)}</p>
+      <div>
+        <h3 class="font-mono text-sm text-text-muted">{t.about.educationTitle}</h3>
+        <ul class="mt-4 space-y-3">
+          {education.map((ed) => (
+            <li class="rounded-lg border border-border bg-card p-5">
+              <p class="font-mono text-xs text-accent">
+                {ed.shortName}
+                {ed.endDate && (
+                  <span class="text-text-muted">
+                    {' · '}
+                    {ed.expected ? t.about.expected : t.about.completed} {formatYearMonth(ed.endDate, locale)}
+                  </span>
+                )}
+              </p>
+              <p class="mt-2 font-bold">{localize(ed.area, locale)}</p>
+              <p class="text-sm text-text-muted">
+                {localize(ed.studyType, locale)} · {ed.institution}
+              </p>
+              {ed.score && (
+                <p class="mt-3 font-mono text-sm">
+                  {t.about.gpa} <span class="font-bold text-accent">{formatDecimal(ed.score, locale)}</span>
+                </p>
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

@@ -2,4 +2,6 @@
   title: Elementomaquia
   kind: sistema
   status: { pt: Em desenvolvimento, en: In development }
-  draft: true
+  summary:
+    pt: Sistema de RPG de fantasia focado em magias elementais e mecânica de pool de dados.
+    en: Fantasy tabletop RPG system focused on elemental magic and a dice pool mechanic.

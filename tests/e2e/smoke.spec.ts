@@ -2,6 +2,7 @@ import { expect, test } from '../fixtures';
 
 const PAGES = [
   { path: '/', lang: 'pt-BR' },
+  { path: '/en/', lang: 'en' },
   { path: '/dev/tokens/', lang: 'pt-BR' },
   { path: '/dev/conteudo/', lang: 'pt-BR' },
 ];

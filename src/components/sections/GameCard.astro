@@ -1,0 +1,98 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { Image } from 'astro:assets';
+import { localize, type Locale } from '../../i18n';
+import { useTranslations } from '../../i18n/ui';
+import { gameCover } from '../../lib/covers';
+import Tag from '../ui/Tag.astro';
+
+interface Props {
+  locale: Locale;
+  game: CollectionEntry<'games'>;
+  size: 'featured' | 'compact';
+}
+
+const { locale, game, size } = Astro.props;
+const t = useTranslations(locale);
+const { data } = game;
+const cover = gameCover(game.id);
+const featured = size === 'featured';
+const contributions = localize(data.contributions, locale);
+---
+
+<article
+  data-kind="game"
+  data-game={game.id}
+  class="group flex h-full flex-col overflow-hidden rounded-lg border border-border bg-card transition-colors duration-200 hover:border-accent/60"
+>
+  {cover && (
+    <div class="aspect-video overflow-hidden border-b border-border bg-surface">
+      <Image
+        src={cover}
+        alt={`${t.games.coverAlt} ${data.title}`}
+        widths={featured ? [480, 800, 1200] : [400, 640]}
+        sizes={
+          featured
+            ? '(min-width: 1024px) 380px, (min-width: 768px) 50vw, 100vw'
+            : '(min-width: 1024px) 280px, (min-width: 768px) 50vw, 100vw'
+        }
+        class:list={[
+          'size-full transition-transform duration-500 ease-out-soft group-hover:scale-[1.03]',
+          data.coverFit === 'contain' ? 'object-contain p-4' : 'object-cover',
+        ]}
+        loading="lazy"
+      />
+    </div>
+  )}
+  <div class:list={['flex flex-1 flex-col', featured ? 'p-6' : 'p-5']}>
+    <p class="font-mono text-xs text-accent">
+      {data.engine} · {localize(data.genre, locale)}
+    </p>
+    <h3 class:list={['mt-2 font-bold', featured ? 'text-xl' : 'text-lg']}>{data.title}</h3>
+
+    {featured && data.jam?.awards && (
+      <ul class="mt-3 flex flex-wrap gap-2" aria-label={data.jam.name}>
+        {localize(data.jam.awards, locale).map((award) => (
+          <li>
+            <Tag variant="accent">{award}</Tag>
+          </li>
+        ))}
+      </ul>
+    )}
+
+    {featured && <p class="mt-3 text-sm text-text-muted">{localize(data.summary, locale)}</p>}
+
+    <ul class:list={['space-y-1.5 text-sm', featured ? 'mt-4' : 'mt-3']}>
+      {(featured ? contributions : contributions.slice(0, 2)).map((item) => (
+        <li class="flex gap-2.5">
+          <span class="font-mono text-accent" aria-hidden="true">
+            ▹
+          </span>
+          <span>{item}</span>
+        </li>
+      ))}
+    </ul>
+
+    {featured && data.team.length > 1 && (
+      <p class="mt-4 text-xs text-text-muted">
+        <span class="font-mono text-text">{t.games.team}:</span>{' '}
+        {data.team.map((member) => member.name).join(', ')}
+      </p>
+    )}
+
+    <div class="mt-auto flex flex-wrap items-center gap-x-5 gap-y-2 pt-5 font-mono text-sm">
+      <a href={data.links.itch} class="text-accent underline-offset-4 hover:underline">
+        {t.games.itch} <span aria-hidden="true">↗</span>
+        <span class="sr-only"> — {data.title}</span>
+      </a>
+      {data.links.repo && (
+        <a href={data.links.repo} class="text-accent underline-offset-4 hover:underline">
+          {t.games.repo} <span aria-hidden="true">↗</span>
+          <span class="sr-only"> — {data.title}</span>
+        </a>
+      )}
+      {data.noGenerativeAi && <span class="text-xs text-text-muted">{t.games.noAi}</span>}
+      {data.playableInBrowser && <span class="text-xs text-text-muted">{t.games.browser}</span>}
+    </div>
+  </div>
+</article>

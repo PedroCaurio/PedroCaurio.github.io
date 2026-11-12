@@ -25,14 +25,14 @@ Fase 3 do Spec-Driven Development. Cada tarefa termina com a verificação indic
 - [x] T-20 `content.config.ts` com 7 coleções Zod (profile, experience, education, skills, games, projects, rpg), campos `{ pt, en }`. *Verif.: schema rejeita e-mail inválido no build; `/dev/conteudo` renderiza tudo; teste garante ausência de "SGEM".*
 - [x] T-21 Perfil, experiência (CESS), formação (FURG, IFRS) e skills preenchidos com dados confirmados.
 - [ ] T-22 Projetos: estudo de caso do próprio site (rascunho pronto), `distributed-chat` (draft, falta papel/contexto), 1–2 casos genéricos da CESS (aguardando T-00c).
-- [~] T-23 Jogos: 7 entradas com papel e sistemas confirmados. Falta: covers e loops de gameplay (MP4/WebM ≤ 1 MB).
-- [~] T-24 RPG: Elementomaquia criado como draft; faltam detalhes.
+- [~] T-23 Jogos: 7 entradas com papel, sistemas e capas (`src/assets/games/`, otimizadas pelo `astro:assets`). Falta: loops de gameplay (MP4/WebM ≤ 1 MB).
+- [x] T-24 RPG: Elementomaquia publicado (fantasia, magias elementais, pool de dados).
 
 ## Fase 3 — Páginas
 
-- [ ] T-30 `BaseLayout` (head, meta, OG, JSON-LD Person, skip link). *Verif.: validador de rich results.*
-- [ ] T-31 Componentes `ui/`. *Verif.: navegador 390/1280, foco por teclado.*
-- [ ] T-32 Seções da home (R-01..R-08). *Verif.: e2e R-01..R-08 + axe + screenshots.*
+- [~] T-30 `BaseLayout` com meta, OG, canonical, `hreflang`, JSON-LD `Person` e skip link. Falta: OG PNG e passar no validador de rich results.
+- [x] T-31 Componentes `ui/` (`SectionHeading`, `Tag`, `ButtonLink`) e `layout/` (`Header`, `Footer`).
+- [x] T-32 Home em `/` e `/en/` (`src/components/Home.astro` + `sections/`): hero com terminal e números, sobre, experiência, projetos, jogos, ficha de personagem, mesa de RPG, contato. *Verif.: 38 testes (e2e R-01, R-03, R-05, R-07, R-08, R-13, R-20 + axe) em 390/1280; screenshots conferidos.* Botão "Baixar CV" do R-01 entra com T-34.
 - [ ] T-33 `/projetos/[slug]` e `/jogos/[slug]`. *Verif.: e2e R-04/R-05.*
 - [ ] T-34 `/cv` + `build-pdf.ts`. *Verif.: copiar/colar texto do PDF mantém ordem; R-09/R-10.*
 - [ ] T-35 `/como-foi-feito` (R-12).
@@ -42,7 +42,7 @@ Fase 3 do Spec-Driven Development. Cada tarefa termina com a verificação indic
 
 - [ ] T-40 `/llms.txt`, `/resume.json` (validar contra schema JSON Resume), sitemap, robots, OG PNG.
 - [ ] T-41 `CommandPalette` (R-11). *Verif.: teclado, leitor de tela, Esc, sem JS o site continua ok.*
-- [ ] T-42 i18n EN (R-13).
+- [~] T-42 i18n EN (R-13): home em `/en/`, seletor de idioma e `hreflang` prontos; textos de interface em `src/i18n/ui.ts`. Falta estender às páginas futuras.
 
 ## Fase 5 — Polimento e lançamento
 

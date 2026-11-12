@@ -3,6 +3,7 @@
 
 @layer base {
   html {
+    scroll-behavior: smooth;
     color-scheme: dark;
     background-color: var(--color-bg);
     color: var(--color-text);
@@ -52,5 +53,17 @@
         transparent 1px
       );
     background-size: 32px 32px;
+  }
+
+  .bg-grid-fade {
+    mask-image: radial-gradient(ellipse 80% 70% at 50% 0%, var(--color-bg) 30%, transparent 100%);
+  }
+
+  .hero-glow {
+    background: radial-gradient(
+      circle at center,
+      color-mix(in srgb, var(--color-accent) 16%, transparent) 0%,
+      transparent 65%
+    );
   }
 }

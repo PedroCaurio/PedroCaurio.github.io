@@ -40,6 +40,7 @@
   featured: true
   engine: Unity
   language: C#
+  coverFit: contain
   genre: { pt: Roguelite de ação · Multiplayer, en: Action roguelite · Multiplayer }
   summary:
     pt: Jogue como Nix, um gato que defende seu castelo, ou Cora, uma maga que protege o reino. Aceite contratos, sobreviva a ondas de ratos e derrote a origem da anomalia.

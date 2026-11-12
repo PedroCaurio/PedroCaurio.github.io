@@ -98,7 +98,7 @@ Fonte de verdade: [`src/content.config.ts`](../../src/content.config.ts). Resumo
 | `experience` | `experience.yaml` | organization, url, position\*, employment\*, startDate?, endDate?, confidential, summary\*, highlights\*[], tags[] |
 | `education` | `education.yaml` | institution, shortName, area\*, studyType\*, startDate?, endDate?, expected, score? |
 | `skills` | `skills.yaml` | attribute\* (ficha de RPG), name\*, keywords[] |
-| `games` | `games.yaml` | title, engine, language, genre\*, summary\*, role\*, contributions\*[], team[], jam?{name, awards\*[]}, noGenerativeAi, links{itch, repo?}, playableInBrowser, featured, order |
+| `games` | `games.yaml` | title, engine, language, genre\*, summary\*, role\*, contributions\*[], team[], jam?{name, awards\*[]}, noGenerativeAi, links{itch, repo?}, playableInBrowser, featured, order, coverFit (`cover`\|`contain`; capa em `src/assets/games/<id>.png`) |
 | `projects` | `projects/{pt,en}/<slug>.md` | title, summary, role, stack[], links, confidential, draft, featured, order + corpo (estudo de caso) |
 | `rpg` | `rpg.yaml` | title, kind, status\*, summary\*?, draft |
 

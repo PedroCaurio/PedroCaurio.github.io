@@ -1,0 +1,52 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import type { Locale } from '../../i18n';
+import { useTranslations } from '../../i18n/ui';
+import SectionHeading from '../ui/SectionHeading.astro';
+import GameCard from './GameCard.astro';
+
+interface Props {
+  locale: Locale;
+  games: CollectionEntry<'games'>[];
+}
+
+const { locale, games } = Astro.props;
+const t = useTranslations(locale);
+const featured = games.filter((game) => game.data.featured);
+const others = games.filter((game) => !game.data.featured);
+---
+
+<section
+  id="games"
+  aria-labelledby="games-title"
+  class="scroll-mt-16 border-t border-border bg-surface py-20 md:py-28"
+>
+  <div class="mx-auto max-w-6xl px-6">
+    <SectionHeading
+      id="games-title"
+      index="04"
+      eyebrow={t.games.eyebrow}
+      title={t.games.title}
+      intro={t.games.intro}
+    />
+    <ul class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {featured.map((game) => (
+        <li>
+          <GameCard locale={locale} game={game} size="featured" />
+        </li>
+      ))}
+    </ul>
+    {others.length > 0 && (
+      <>
+        <h3 class="mt-16 font-mono text-sm text-text-muted">{t.games.others}</h3>
+        <ul class="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {others.map((game) => (
+            <li>
+              <GameCard locale={locale} game={game} size="compact" />
+            </li>
+          ))}
+        </ul>
+      </>
+    )}
+  </div>
+</section>

@@ -1,6 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
 
-const PORT = 4322;
+// Porta própria: outros projetos Astro locais costumam ocupar 4321/4322 e seriam reaproveitados.
+const PORT = Number(process.env.TEST_PORT ?? 4340);
 
 export default defineConfig({
   testDir: './tests',

@@ -5,6 +5,13 @@ const PAGES = [
   { path: '/en/', lang: 'en' },
   { path: '/jogos/', lang: 'pt-BR' },
   { path: '/en/games/', lang: 'en' },
+  { path: '/projetos/portfolio/', lang: 'pt-BR' },
+  { path: '/projetos/distributed-chat/', lang: 'pt-BR' },
+  { path: '/projetos/so-simulator/', lang: 'pt-BR' },
+  { path: '/projetos/tower-defense/', lang: 'pt-BR' },
+  { path: '/en/projects/portfolio/', lang: 'en' },
+  { path: '/jogos/molten-metal/', lang: 'pt-BR' },
+  { path: '/en/games/midnight-meow/', lang: 'en' },
   { path: '/dev/tokens/', lang: 'pt-BR' },
   { path: '/dev/conteudo/', lang: 'pt-BR' },
 ];

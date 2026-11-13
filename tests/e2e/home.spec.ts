@@ -17,7 +17,14 @@ test.describe('home PT-BR (profissional)', () => {
   });
 
   test('seções profissionais presentes; jogos e RPG ficam em página própria', async ({ page }) => {
-    for (const name of ['Sobre mim', 'Experiência', 'Projetos', 'Habilidades', 'Vamos conversar?']) {
+    for (const name of [
+      'Sobre mim',
+      'Experiência',
+      'Projetos',
+      'Como eu trabalho',
+      'Habilidades',
+      'Vamos conversar?',
+    ]) {
       await expect(page.getByRole('heading', { level: 2, name })).toBeAttached();
     }
     for (const name of ['Jogos', 'Ficha de personagem', 'Mesa de RPG']) {
@@ -108,7 +115,16 @@ test.describe('página de jogos e RPG', () => {
 });
 
 test.describe('confidencialidade e termos proibidos', () => {
-  for (const path of ['/', '/en/', '/jogos/', '/en/games/']) {
+  for (const path of [
+    '/',
+    '/en/',
+    '/jogos/',
+    '/en/games/',
+    '/projetos/portfolio/',
+    '/projetos/distributed-chat/',
+    '/en/projects/portfolio/',
+    '/jogos/midnight-meow/',
+  ]) {
     test(`${path} não cita SGEM nem ESP32`, async ({ page }) => {
       await page.goto(path);
       const html = await page.content();

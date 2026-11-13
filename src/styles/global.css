@@ -10,6 +10,7 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 7rem;
     color-scheme: dark;
     background-color: var(--color-bg);
     color: var(--color-text);
@@ -27,6 +28,12 @@
     outline: 2px solid var(--color-accent);
     outline-offset: 3px;
     border-radius: var(--radius-sm);
+  }
+
+  @media (min-width: 80rem) {
+    html {
+      scroll-padding-top: 5.5rem;
+    }
   }
 
   a {
@@ -144,6 +151,147 @@
   .marquee {
     mask-image: linear-gradient(to right, transparent, var(--color-bg) 12%, var(--color-bg) 88%, transparent);
   }
+
+  .nav-scroll {
+    scrollbar-width: none;
+  }
+
+  .nav-scroll::-webkit-scrollbar {
+    display: none;
+  }
+
+  @media (max-width: 79.99rem) {
+    .nav-scroll {
+      mask-image: linear-gradient(to right, var(--color-bg) calc(100% - 2.5rem), transparent);
+    }
+  }
+
+  /* Makes the whole card clickable; sibling links need `relative z-10` to stay on top. */
+  .stretched-link::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+  }
+
+  .stretched-link:focus-visible {
+    outline: none;
+  }
+
+  .stretched-link:focus-visible::after {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+
+  .prose {
+    color: var(--color-text-muted);
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    max-width: 70ch;
+  }
+
+  .prose > * + * {
+    margin-top: 1.25rem;
+  }
+
+  .prose h2 {
+    margin-top: 3.5rem;
+    color: var(--color-text);
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
+
+  .prose h2::before {
+    content: '## ';
+    color: var(--color-accent);
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+  }
+
+  .prose h2:first-child {
+    margin-top: 0;
+  }
+
+  .prose h3 {
+    margin-top: 2.25rem;
+    color: var(--color-text);
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+
+  .prose strong {
+    color: var(--color-text);
+    font-weight: 700;
+  }
+
+  .prose a {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  .prose code {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    background: var(--color-surface);
+    padding: 0.1em 0.35em;
+    color: var(--color-text);
+    font-family: var(--font-mono);
+    font-size: 0.85em;
+  }
+
+  .prose ul > li {
+    position: relative;
+    padding-left: 1.5rem;
+  }
+
+  .prose ul > li::before {
+    content: '▹';
+    position: absolute;
+    left: 0;
+    color: var(--color-accent);
+    font-family: var(--font-mono);
+  }
+
+  .prose ol {
+    counter-reset: step;
+    border-left: 1px solid var(--color-border);
+    margin-left: 0.9rem;
+  }
+
+  .prose ol > li {
+    position: relative;
+    counter-increment: step;
+    padding-left: 1.75rem;
+  }
+
+  .prose ol > li::before {
+    content: counter(step, decimal-leading-zero);
+    position: absolute;
+    top: 0.2rem;
+    left: -0.95rem;
+    display: grid;
+    place-items: center;
+    width: 1.9rem;
+    height: 1.9rem;
+    border: 1px solid var(--color-accent);
+    border-radius: 9999px;
+    background: var(--color-bg);
+    color: var(--color-accent);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    line-height: 1;
+  }
+
+  .prose li + li {
+    margin-top: 0.75rem;
+  }
+
+  .prose ol > li + li {
+    margin-top: 1.25rem;
+  }
 }
 
 @keyframes spin-angle {
@@ -242,7 +390,38 @@
   }
 }
 
+@keyframes page-out {
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+
 @media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+
+  ::view-transition-old(root) {
+    animation: page-out 180ms var(--ease-out-soft) both;
+  }
+
+  ::view-transition-new(root) {
+    animation: page-in 360ms var(--ease-out-soft) both;
+  }
+
+  ::view-transition-group(*) {
+    animation-duration: 420ms;
+    animation-timing-function: var(--ease-out-soft);
+  }
+
   .type-in {
     display: inline-block;
     overflow: hidden;
@@ -291,7 +470,14 @@
     .reveal {
       animation: reveal linear both;
       animation-timeline: view();
-      animation-range: entry 0% entry 85%;
+      animation-range: entry var(--reveal-offset, 0%) entry calc(var(--reveal-offset, 0%) + 85%);
+    }
+
+    .draw-x {
+      transform-origin: left;
+      animation: grow-x linear both;
+      animation-timeline: view();
+      animation-range: entry 30% cover 45%;
     }
 
     .heading-bar::after {

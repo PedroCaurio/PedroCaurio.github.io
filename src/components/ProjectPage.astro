@@ -1,0 +1,242 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from './layout/Header.astro';
+import Footer from './layout/Footer.astro';
+import Tag from './ui/Tag.astro';
+import ButtonLink from './ui/ButtonLink.astro';
+import { contentKey, homePath, locales, otherLocale, projectPath, projectSlug, type Locale } from '../i18n';
+import { useTranslations } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+  entry: CollectionEntry<'projects'>;
+}
+
+const { locale, entry } = Astro.props;
+const t = useTranslations(locale);
+const { data } = entry;
+const slug = projectSlug(entry.id);
+const { Content, headings } = await render(entry);
+const toc = headings.filter((heading) => heading.depth === 2);
+
+const published = await getCollection('projects', ({ data }) => !data.draft && !data.confidential);
+const siblings = published
+  .filter((project) => project.id.startsWith(`${contentKey(locale)}/`))
+  .sort((a, b) => a.data.order - b.data.order);
+const position = siblings.findIndex((project) => project.id === entry.id);
+const prev = siblings[position - 1];
+const next = siblings[position + 1];
+const available = locales.filter((l) =>
+  published.some((project) => project.id === `${contentKey(l)}/${slug}`),
+);
+const other = otherLocale(locale);
+
+const [profileEntry] = await getCollection('profile');
+const profile = profileEntry.data;
+const backHref = `${homePath[locale]}#projects`;
+---
+
+<BaseLayout
+  title={`${data.title} — ${t.caseStudy.metaSuffix}`}
+  description={data.summary}
+  locale={locale}
+  alternates={available.map((l) => ({ locale: l, href: projectPath(l, slug) }))}
+>
+  <Header
+    slot="header"
+    locale={locale}
+    page="pro"
+    sectionBase={homePath[locale]}
+    alternate={available.includes(other) ? projectPath(other, slug) : undefined}
+  />
+
+  <article>
+    <header class="relative overflow-hidden border-b border-border">
+      <div aria-hidden="true" class="bg-grid bg-grid-fade grid-pan absolute inset-0"></div>
+      <div
+        aria-hidden="true"
+        class="hero-glow pointer-events-none absolute -top-48 left-1/2 size-[40rem] -translate-x-1/2"
+      ></div>
+      <div class="relative mx-auto max-w-6xl px-6 pt-10 pb-14 md:pt-14 md:pb-20">
+        <nav aria-label={t.nav.breadcrumb} class="animate-fade-up font-mono text-xs text-text-muted">
+          <ol class="flex flex-wrap items-center gap-2">
+            <li>
+              <a href={homePath[locale]} class="hover:text-accent">
+                {t.nav.home}
+              </a>
+            </li>
+            <li aria-hidden="true">/</li>
+            <li>
+              <a href={backHref} class="hover:text-accent">
+                {t.nav.projects}
+              </a>
+            </li>
+            <li aria-hidden="true">/</li>
+            <li aria-current="page" class="text-text">
+              {data.title}
+            </li>
+          </ol>
+        </nav>
+        <p class="mt-8 font-mono text-sm text-accent">
+          <span aria-hidden="true">&gt; </span>
+          <span class="type-in" style={`--chars: ${t.caseStudy.eyebrow.length}`}>
+            {t.caseStudy.eyebrow}
+          </span>
+        </p>
+        <h1 class="mt-3 text-display font-bold tracking-tight text-balance">
+          <span class="inline-block" style={`view-transition-name: project-${slug}`}>
+            {data.title}
+          </span>
+        </h1>
+        <p class="mt-6 max-w-[62ch] animate-fade-up text-lg text-text-muted [animation-delay:150ms] md:text-xl">
+          {data.summary}
+        </p>
+        <dl class="mt-10 grid grid-cols-2 gap-x-6 gap-y-5 border-t border-border pt-8 sm:grid-cols-3 lg:grid-cols-5">
+          {[
+            { label: t.caseStudy.role, value: data.role },
+            ...(data.context ? [{ label: t.caseStudy.context, value: data.context }] : []),
+            ...data.facts,
+          ].map((item, i) => (
+            <div class="animate-fade-up" style={`animation-delay: ${250 + i * 90}ms`}>
+              <dt class="font-mono text-xs text-text-muted">{item.label}</dt>
+              <dd class="mt-1 font-bold text-text">{item.value}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </header>
+
+    <div class="mx-auto grid max-w-6xl gap-12 px-6 py-14 md:py-20 lg:grid-cols-[minmax(0,1fr)_17rem] lg:gap-16">
+      <div class="prose min-w-0">
+        <Content />
+      </div>
+
+      <aside class="space-y-8 lg:sticky lg:top-24 lg:self-start">
+        {toc.length > 0 && (
+          <nav aria-labelledby="toc-title" class="hidden lg:block">
+            <h2 id="toc-title" class="font-mono text-xs text-text-muted uppercase">
+              {t.caseStudy.toc}
+            </h2>
+            <ol class="mt-4 space-y-2 border-l border-border text-sm">
+              {toc.map((heading) => (
+                <li>
+                  <a
+                    href={`#${heading.slug}`}
+                    class="-ml-px block border-l border-transparent py-0.5 pl-4 text-text-muted transition-colors duration-200 hover:border-accent hover:text-accent"
+                  >
+                    {heading.text}
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </nav>
+        )}
+
+        {data.team.length > 0 && (
+          <section aria-labelledby="team-title" class="rounded-lg border border-border bg-card p-5">
+            <h2 id="team-title" class="font-mono text-xs text-text-muted uppercase">
+              {t.caseStudy.team}
+            </h2>
+            <ul class="mt-3 space-y-1.5 text-sm">
+              {data.team.map((member) => (
+                <li>
+                  {member.url ? (
+                    <a href={member.url} class="underline-offset-4 hover:text-accent hover:underline">
+                      {member.name}
+                    </a>
+                  ) : (
+                    member.name
+                  )}
+                </li>
+              ))}
+            </ul>
+            <p class="mt-3 text-xs text-text-muted">{t.caseStudy.teamNote}</p>
+          </section>
+        )}
+
+        <section aria-labelledby="stack-title">
+          <h2 id="stack-title" class="font-mono text-xs text-text-muted uppercase">
+            {t.caseStudy.stack}
+          </h2>
+          <ul class="mt-3 flex flex-wrap gap-2">
+            {data.stack.map((tech) => (
+              <li>
+                <Tag>{tech}</Tag>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        {(data.links.repo || data.links.demo) && (
+          <section aria-labelledby="links-title">
+            <h2 id="links-title" class="font-mono text-xs text-text-muted uppercase">
+              {t.caseStudy.links}
+            </h2>
+            <div class="mt-3 flex flex-wrap gap-3">
+              {data.links.repo && (
+                <ButtonLink href={data.links.repo} variant="ghost" external class="px-4 py-2">
+                  {t.projects.repo}
+                </ButtonLink>
+              )}
+              {data.links.demo && (
+                <ButtonLink href={data.links.demo} variant="ghost" external class="px-4 py-2">
+                  {t.projects.demo}
+                </ButtonLink>
+              )}
+            </div>
+          </section>
+        )}
+      </aside>
+    </div>
+
+    <nav aria-label={t.nav.projects} class="border-t border-border">
+      <div class="mx-auto grid max-w-6xl gap-4 px-6 py-12 sm:grid-cols-2">
+        {prev ? (
+          <a
+            href={projectPath(locale, projectSlug(prev.id))}
+            class="card-glow group block rounded-lg border border-border bg-card p-5"
+          >
+            <span class="font-mono text-xs text-text-muted">
+              <span
+                aria-hidden="true"
+                class="mr-1 inline-block transition-transform group-hover:-translate-x-1"
+              >
+                ←
+              </span>
+              {t.caseStudy.prev}
+            </span>
+            <span class="mt-1 block font-bold group-hover:text-accent">{prev.data.title}</span>
+          </a>
+        ) : (
+          <span class="hidden sm:block"></span>
+        )}
+        {next && (
+          <a
+            href={projectPath(locale, projectSlug(next.id))}
+            class="card-glow group block rounded-lg border border-border bg-card p-5 sm:text-right"
+          >
+            <span class="font-mono text-xs text-text-muted">
+              {t.caseStudy.next}
+              <span
+                aria-hidden="true"
+                class="ml-1 inline-block transition-transform group-hover:translate-x-1"
+              >
+                →
+              </span>
+            </span>
+            <span class="mt-1 block font-bold group-hover:text-accent">{next.data.title}</span>
+          </a>
+        )}
+      </div>
+      <p class="pb-16 text-center">
+        <a href={backHref} class="font-mono text-sm text-accent underline-offset-4 hover:underline">
+          <span aria-hidden="true">← </span>
+          {t.caseStudy.back}
+        </a>
+      </p>
+    </nav>
+  </article>
+
+  <Footer slot="footer" locale={locale} name={profile.name} />
+</BaseLayout>

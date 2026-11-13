@@ -30,3 +30,5 @@ Responda direto neste arquivo ou no chat. O que já foi decidido está em [perfi
 12. Foto profissional? Logo/monograma?
 13. Telefone no PDF do currículo: sim ou não?
 14. Cidade para o currículo (ex.: "Rio Grande, RS — remoto")?
+15. **Projetos em equipe** (distributed-chat, simulador de SO, Defesa do Reino): estão publicados com papel "Coautor" e o time creditado. Qual foi sua parte em cada um (ex.: servidor TCP, escalonador, sistema de ondas)? Com isso o estudo de caso ganha uma seção "O que eu fiz".
+16. Quem é `mathyc0de` no simulador de SO? O README do tower defense liga Gabriel Silva e Matheus Pimenta ao mesmo perfil.

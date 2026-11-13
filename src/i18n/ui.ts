@@ -17,6 +17,7 @@ const pt = {
     about: 'Sobre',
     experience: 'Experiência',
     projects: 'Projetos',
+    process: 'Processo',
     skills: 'Habilidades',
     contact: 'Contato',
     games: 'Jogos',
@@ -24,24 +25,20 @@ const pt = {
     tabletop: 'Mesa',
     toPlay: 'Jogos & RPG',
     toPro: 'Profissional',
+    home: 'Início',
+    breadcrumb: 'Trilha de navegação',
   },
   lang: { switchTo: 'EN', switchLabel: 'Read this page in English' },
   hero: {
     prompt: 'whoami',
     pitch:
-      'Conecto IA, IoT e dados: de firmware para microcontroladores e processamento de borda à orquestração de agentes de IA.',
+      'Conecto IA, IoT e dados: do firmware de microcontroladores e do processamento de borda à orquestração de agentes de IA.',
     ctaEmail: 'Fale comigo',
+    ctaCases: 'Ver estudos de caso',
     terminalTitle: 'pedro@caurio: ~',
     command: 'status',
     rows: { role: 'cargo', mode: 'regime', focus: 'foco', education: 'formação', technical: 'técnico' },
     focusValue: 'IA · IoT · Dados',
-  },
-  stats: {
-    gpa: 'coeficiente de rendimento',
-    yearValue: '4º',
-    year: 'ano de Engenharia de Computação',
-    since: 'início como Analista de Projetos na CESS',
-    technical: 'técnico em Automação Industrial',
   },
   about: {
     eyebrow: 'sobre',
@@ -62,18 +59,60 @@ const pt = {
   projects: {
     eyebrow: 'projetos',
     title: 'Projetos',
+    intro:
+      'Cada projeto tem um estudo de caso com problema, arquitetura, decisões e trade-offs. Os projetos da CESS são confidenciais e não aparecem aqui.',
     role: 'Papel',
     repo: 'código',
     demo: 'site',
+    read: 'Ler estudo de caso',
+    team: 'em equipe',
     githubTitle: 'Mais no GitHub',
-    githubText:
-      'Chat distribuído com Redis e FastAPI, simulador de sistema operacional, tower defense em LÖVE e visualização do A* em Pyxel.',
+    githubText: 'Visualização do algoritmo A* em Pyxel, serviços de rede e outros trabalhos da faculdade.',
     githubCta: 'ver repositórios',
+  },
+  caseStudy: {
+    eyebrow: 'estudo de caso',
+    metaSuffix: 'Estudo de caso · Pedro Caurio',
+    role: 'Papel',
+    context: 'Contexto',
+    team: 'Equipe',
+    teamNote: 'Projeto em equipe: o crédito é de todo o time.',
+    stack: 'Stack',
+    links: 'Links',
+    toc: 'Nesta página',
+    prev: 'Anterior',
+    next: 'Próximo',
+    back: 'Voltar aos projetos',
+  },
+  process: {
+    eyebrow: 'processo',
+    title: 'Como eu trabalho',
+    intro:
+      'Spec-driven development com agentes de IA: o mesmo fluxo que aplico no trabalho e que construiu este site.',
+    steps: [
+      {
+        title: 'Especificar',
+        text: 'Requisitos, design técnico e tarefas escritos antes do código e versionados junto com ele.',
+      },
+      {
+        title: 'Preparar o harness',
+        text: 'Contexto, regras e ferramentas (MCP) para que os agentes trabalhem dentro de limites claros.',
+      },
+      {
+        title: 'Construir com agentes',
+        text: 'Os agentes implementam tarefa por tarefa; eu dirijo a arquitetura e reviso decisões e fatos.',
+      },
+      {
+        title: 'Verificar e entregar',
+        text: 'Testes, checagens estáticas e conferência no navegador. O CI só publica o que passou.',
+      },
+    ],
+    cta: 'Ver o processo aplicado neste site',
   },
   skills: {
     eyebrow: 'stack',
     title: 'Habilidades',
-    intro: 'Agrupadas por domínio. Sem barras de porcentagem: só o que eu uso no dia a dia.',
+    intro: 'Agrupadas por domínio, sem barras de porcentagem: só o que uso de verdade.',
   },
   teaser: {
     eyebrow: 'fora do expediente',
@@ -106,6 +145,24 @@ const pt = {
     browser: 'jogável no navegador',
     itch: 'itch.io',
     repo: 'código',
+    details: 'Ver detalhes',
+  },
+  gameDetail: {
+    eyebrow: 'ficha do jogo',
+    metaSuffix: 'Jogos · Pedro Caurio',
+    about: 'O jogo',
+    contributions: 'O que eu programei',
+    evidence: 'O que este jogo demonstra',
+    team: 'Time',
+    engine: 'Engine',
+    language: 'Linguagem',
+    genre: 'Gênero',
+    role: 'Papel',
+    jam: 'Game jam',
+    play: 'Jogar no itch.io',
+    prev: 'Anterior',
+    next: 'Próximo',
+    back: 'Voltar aos jogos',
   },
   sheet: {
     eyebrow: 'ficha',
@@ -127,7 +184,7 @@ const pt = {
   contact: {
     eyebrow: 'contato',
     title: 'Vamos conversar?',
-    text: 'Aberto a conversas sobre IA aplicada, IoT, dados e desenvolvimento de jogos. Respondo por e-mail.',
+    text: 'Gosto de conversar sobre IA aplicada, IoT, dados e desenvolvimento de jogos. O caminho mais rápido é o e-mail.',
   },
   footer: {
     builtWith: 'Feito com Astro, spec-driven development e agentes de IA.',
@@ -155,6 +212,7 @@ const en: Ui = {
     about: 'About',
     experience: 'Experience',
     projects: 'Projects',
+    process: 'Process',
     skills: 'Skills',
     contact: 'Contact',
     games: 'Games',
@@ -162,6 +220,8 @@ const en: Ui = {
     tabletop: 'Table',
     toPlay: 'Games & RPG',
     toPro: 'Professional',
+    home: 'Home',
+    breadcrumb: 'Breadcrumb',
   },
   lang: { switchTo: 'PT', switchLabel: 'Ler esta página em português' },
   hero: {
@@ -169,17 +229,11 @@ const en: Ui = {
     pitch:
       'I connect AI, IoT and data: from microcontroller firmware and edge processing to AI agent orchestration.',
     ctaEmail: 'Get in touch',
+    ctaCases: 'See case studies',
     terminalTitle: 'pedro@caurio: ~',
     command: 'status',
     rows: { role: 'role', mode: 'mode', focus: 'focus', education: 'education', technical: 'technical' },
     focusValue: 'AI · IoT · Data',
-  },
-  stats: {
-    gpa: 'GPA (out of 10)',
-    yearValue: '4th',
-    year: 'year of Computer Engineering',
-    since: 'joined CESS as Software Project Analyst',
-    technical: 'Industrial Automation technician',
   },
   about: {
     eyebrow: 'about',
@@ -200,18 +254,60 @@ const en: Ui = {
   projects: {
     eyebrow: 'projects',
     title: 'Projects',
+    intro:
+      'Each project has a case study covering the problem, architecture, decisions and trade-offs. CESS projects are confidential and are not shown here.',
     role: 'Role',
     repo: 'code',
     demo: 'site',
+    read: 'Read case study',
+    team: 'team project',
     githubTitle: 'More on GitHub',
-    githubText:
-      'A distributed chat with Redis and FastAPI, an operating system simulator, a LÖVE tower defense and an A* visualization in Pyxel.',
+    githubText: 'An A* visualization in Pyxel, networking services and other university work.',
     githubCta: 'browse repositories',
+  },
+  caseStudy: {
+    eyebrow: 'case study',
+    metaSuffix: 'Case study · Pedro Caurio',
+    role: 'Role',
+    context: 'Context',
+    team: 'Team',
+    teamNote: 'Team project: credit goes to the whole team.',
+    stack: 'Stack',
+    links: 'Links',
+    toc: 'On this page',
+    prev: 'Previous',
+    next: 'Next',
+    back: 'Back to projects',
+  },
+  process: {
+    eyebrow: 'process',
+    title: 'How I work',
+    intro:
+      'Spec-driven development with AI agents: the same workflow I use at work and that built this site.',
+    steps: [
+      {
+        title: 'Specify',
+        text: 'Requirements, technical design and tasks written before the code and versioned alongside it.',
+      },
+      {
+        title: 'Set up the harness',
+        text: 'Context, rules and tools (MCP) so agents work within clear boundaries.',
+      },
+      {
+        title: 'Build with agents',
+        text: 'Agents implement task by task; I steer the architecture and review decisions and facts.',
+      },
+      {
+        title: 'Verify and ship',
+        text: 'Tests, static checks and a real browser review. CI only publishes what passed.',
+      },
+    ],
+    cta: 'See the process applied to this site',
   },
   skills: {
     eyebrow: 'stack',
     title: 'Skills',
-    intro: 'Grouped by domain. No percentage bars: just what I use day to day.',
+    intro: 'Grouped by domain, no percentage bars: only what I actually use.',
   },
   teaser: {
     eyebrow: 'after hours',
@@ -244,6 +340,24 @@ const en: Ui = {
     browser: 'playable in browser',
     itch: 'itch.io',
     repo: 'code',
+    details: 'See details',
+  },
+  gameDetail: {
+    eyebrow: 'game sheet',
+    metaSuffix: 'Games · Pedro Caurio',
+    about: 'The game',
+    contributions: 'What I programmed',
+    evidence: 'What this game shows',
+    team: 'Team',
+    engine: 'Engine',
+    language: 'Language',
+    genre: 'Genre',
+    role: 'Role',
+    jam: 'Game jam',
+    play: 'Play on itch.io',
+    prev: 'Previous',
+    next: 'Next',
+    back: 'Back to games',
   },
   sheet: {
     eyebrow: 'sheet',
@@ -265,7 +379,7 @@ const en: Ui = {
   contact: {
     eyebrow: 'contact',
     title: "Let's talk?",
-    text: 'Open to conversations about applied AI, IoT, data and game development. Reach me by email.',
+    text: 'Happy to talk about applied AI, IoT, data and game development. Email is the fastest way to reach me.',
   },
   footer: {
     builtWith: 'Built with Astro, spec-driven development and AI agents.',

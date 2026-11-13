@@ -1,9 +1,8 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import { localize, type Locale } from '../../i18n';
-import { formatDecimal, useTranslations } from '../../i18n/ui';
+import { useTranslations } from '../../i18n/ui';
 import ButtonLink from '../ui/ButtonLink.astro';
-import StatsBar from '../ui/StatsBar.astro';
 
 interface Props {
   locale: Locale;
@@ -31,13 +30,6 @@ const rows = [
     value: `${localize(technical.area, locale)} · ${technical.shortName}`,
   },
 ].filter((row): row is Pair => Boolean(row));
-
-const stats = [
-  degree?.score && { value: formatDecimal(degree.score, locale), label: t.stats.gpa },
-  { value: t.stats.yearValue, label: t.stats.year },
-  job?.startDate && { value: job.startDate.slice(0, 4), label: t.stats.since },
-  technical?.endDate && { value: technical.endDate.slice(0, 4), label: t.stats.technical },
-].filter((stat): stat is { value: string; label: string } => Boolean(stat));
 ---
 
 <section aria-labelledby="hero-title" class="relative overflow-hidden border-b border-border">
@@ -47,7 +39,7 @@ const stats = [
     class="hero-glow pointer-events-none absolute -top-40 left-1/2 size-[44rem] -translate-x-1/2 lg:-right-40 lg:left-auto lg:translate-x-0"
   ></div>
 
-  <div class="relative mx-auto grid max-w-6xl gap-12 px-6 pt-16 pb-14 md:pt-24 lg:grid-cols-[1.15fr_1fr] lg:items-center lg:gap-16 lg:pb-20">
+  <div class="relative mx-auto grid max-w-6xl gap-12 px-6 pt-14 pb-16 sm:pt-20 md:pt-24 md:pb-24 lg:grid-cols-[1.15fr_1fr] lg:items-center lg:gap-16 lg:pb-28">
     <div>
       <p class="font-mono text-sm text-accent">
         <span aria-hidden="true">&gt; </span>
@@ -69,17 +61,26 @@ const stats = [
       </p>
       <div class="mt-8 flex animate-fade-up flex-wrap gap-3 [animation-delay:450ms]">
         <ButtonLink href={`mailto:${profile.email}`}>{t.hero.ctaEmail}</ButtonLink>
-        {github && (
-          <ButtonLink href={github.url} variant="ghost" external rel="me">
-            GitHub
-          </ButtonLink>
-        )}
-        {linkedin && (
-          <ButtonLink href={linkedin.url} variant="ghost" external rel="me">
-            LinkedIn
-          </ButtonLink>
-        )}
+        <ButtonLink href="#projects" variant="ghost">
+          {t.hero.ctaCases} <span aria-hidden="true">→</span>
+        </ButtonLink>
       </div>
+      <ul class="mt-5 flex animate-fade-up flex-wrap gap-x-6 gap-y-2 font-mono text-sm [animation-delay:550ms]">
+        {[github, linkedin].map(
+          (profileLink) =>
+            profileLink && (
+              <li>
+                <a
+                  href={profileLink.url}
+                  rel="me"
+                  class="text-text-muted underline-offset-4 transition-colors hover:text-accent hover:underline"
+                >
+                  {profileLink.network} <span aria-hidden="true">↗</span>
+                </a>
+              </li>
+            ),
+        )}
+      </ul>
     </div>
 
     <div class="animate-fade-up [animation-delay:400ms]">
@@ -117,6 +118,4 @@ const stats = [
       </div>
     </div>
   </div>
-
-  <StatsBar stats={stats} />
 </section>

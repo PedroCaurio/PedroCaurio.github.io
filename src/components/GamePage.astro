@@ -1,0 +1,259 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from './layout/Header.astro';
+import Footer from './layout/Footer.astro';
+import Tag from './ui/Tag.astro';
+import ButtonLink from './ui/ButtonLink.astro';
+import { gamePath, localize, locales, otherLocale, playPath, type Locale } from '../i18n';
+import { useTranslations } from '../i18n/ui';
+import { gameCover } from '../lib/covers';
+
+interface Props {
+  locale: Locale;
+  game: CollectionEntry<'games'>;
+}
+
+const { locale, game } = Astro.props;
+const t = useTranslations(locale);
+const { data } = game;
+const cover = gameCover(game.id);
+const featured = (await getCollection('games', ({ data }) => data.featured)).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+const position = featured.findIndex((entry) => entry.id === game.id);
+const prev = featured[position - 1];
+const next = featured[position + 1];
+const [profileEntry] = await getCollection('profile');
+const profile = profileEntry.data;
+const backHref = `${playPath[locale]}#games`;
+
+const meta = [
+  { label: t.gameDetail.role, value: localize(data.role, locale) },
+  { label: t.gameDetail.engine, value: data.engine },
+  { label: t.gameDetail.language, value: data.language },
+  { label: t.gameDetail.genre, value: localize(data.genre, locale) },
+  ...(data.jam ? [{ label: t.gameDetail.jam, value: data.jam.name }] : []),
+];
+const evidence = data.evidence ? localize(data.evidence, locale) : [];
+---
+
+<BaseLayout
+  title={`${data.title} — ${t.gameDetail.metaSuffix}`}
+  description={localize(data.summary, locale)}
+  locale={locale}
+  alternates={locales.map((l) => ({ locale: l, href: gamePath(l, game.id) }))}
+>
+  <Header
+    slot="header"
+    locale={locale}
+    page="play"
+    sectionBase={playPath[locale]}
+    alternate={gamePath(otherLocale(locale), game.id)}
+  />
+
+  <article data-kind="game-detail">
+    <header class="relative overflow-hidden border-b border-border">
+      <div aria-hidden="true" class="bg-grid bg-grid-fade absolute inset-0"></div>
+      <div class="relative mx-auto grid max-w-6xl gap-10 px-6 pt-10 pb-14 md:pt-14 lg:grid-cols-[1fr_1.1fr] lg:items-center lg:gap-14 lg:pb-20">
+        <div>
+          <nav aria-label={t.nav.breadcrumb} class="animate-fade-up font-mono text-xs text-text-muted">
+            <ol class="flex flex-wrap items-center gap-2">
+              <li>
+                <a href={playPath[locale]} class="hover:text-accent">
+                  {t.play.title}
+                </a>
+              </li>
+              <li aria-hidden="true">/</li>
+              <li>
+                <a href={backHref} class="hover:text-accent">
+                  {t.nav.games}
+                </a>
+              </li>
+              <li aria-hidden="true">/</li>
+              <li aria-current="page" class="text-text">
+                {data.title}
+              </li>
+            </ol>
+          </nav>
+          <p class="mt-8 font-mono text-sm text-accent">
+            <span aria-hidden="true">▶ </span>
+            <span class="type-in" style={`--chars: ${t.gameDetail.eyebrow.length}`}>
+              {t.gameDetail.eyebrow}
+            </span>
+          </p>
+          <h1 class="mt-3 text-display font-bold tracking-tight text-balance">{data.title}</h1>
+          {data.jam?.awards && (
+            <ul class="mt-5 flex flex-wrap gap-2" aria-label={data.jam.name}>
+              {localize(data.jam.awards, locale).map((award) => (
+                <li>
+                  <Tag variant="accent" class="shimmer">
+                    {award}
+                  </Tag>
+                </li>
+              ))}
+            </ul>
+          )}
+          <div class="mt-8 flex animate-fade-up flex-wrap gap-3 [animation-delay:200ms]">
+            <ButtonLink href={data.links.itch} external>
+              {t.gameDetail.play}
+            </ButtonLink>
+            {data.links.repo && (
+              <ButtonLink href={data.links.repo} variant="ghost" external>
+                {t.games.repo}
+              </ButtonLink>
+            )}
+          </div>
+        </div>
+        {cover && (
+          <div
+            class="card-glow group relative aspect-video overflow-hidden rounded-lg border border-border bg-surface shadow-2xl"
+            style={`view-transition-name: game-cover-${game.id}`}
+          >
+            <Image
+              src={cover}
+              alt={`${t.games.coverAlt} ${data.title}`}
+              widths={[640, 960, 1280]}
+              sizes="(min-width: 1024px) 560px, 100vw"
+              class:list={['size-full', data.coverFit === 'contain' ? 'object-contain p-6' : 'object-cover']}
+              loading="eager"
+            />
+            <div
+              aria-hidden="true"
+              class="scanlines flicker pointer-events-none absolute inset-0 opacity-40"
+            ></div>
+          </div>
+        )}
+      </div>
+    </header>
+
+    <div class="mx-auto grid max-w-6xl gap-12 px-6 py-14 md:py-20 lg:grid-cols-[minmax(0,1fr)_17rem] lg:gap-16">
+      <div class="space-y-14">
+        <section aria-labelledby="about-game" class="reveal">
+          <h2 id="about-game" class="heading-bar text-2xl font-bold">
+            {t.gameDetail.about}
+          </h2>
+          <p class="mt-6 max-w-[65ch] text-lg leading-relaxed text-text-muted">
+            {localize(data.summary, locale)}
+          </p>
+        </section>
+
+        <section aria-labelledby="contrib-game" class="reveal">
+          <h2 id="contrib-game" class="heading-bar text-2xl font-bold">
+            {t.gameDetail.contributions}
+          </h2>
+          <ol class="mt-6 grid gap-4 sm:grid-cols-2">
+            {localize(data.contributions, locale).map((item, i) => (
+              <li class="card-glow rounded-lg border border-border bg-card p-5">
+                <span class="font-mono text-xs text-accent" aria-hidden="true">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <p class="mt-2">{item}</p>
+              </li>
+            ))}
+          </ol>
+        </section>
+
+        {evidence.length > 0 && (
+          <section aria-labelledby="evidence-game" class="reveal">
+            <h2 id="evidence-game" class="heading-bar text-2xl font-bold">
+              {t.gameDetail.evidence}
+            </h2>
+            <ul class="mt-6 space-y-3">
+              {evidence.map((item) => (
+                <li class="flex gap-3">
+                  <span class="font-mono text-accent" aria-hidden="true">
+                    ▹
+                  </span>
+                  <span class="text-text-muted">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+      </div>
+
+      <aside class="space-y-8 lg:sticky lg:top-24 lg:self-start">
+        <dl class="grid grid-cols-2 gap-5 rounded-lg border border-border bg-card p-5 lg:grid-cols-1">
+          {meta.map((item) => (
+            <div>
+              <dt class="font-mono text-xs text-text-muted">{item.label}</dt>
+              <dd class="mt-1 font-bold">{item.value}</dd>
+            </div>
+          ))}
+        </dl>
+        {data.team.length > 1 && (
+          <section aria-labelledby="team-game">
+            <h2 id="team-game" class="font-mono text-xs text-text-muted uppercase">
+              {t.gameDetail.team}
+            </h2>
+            <ul class="mt-3 space-y-2 text-sm">
+              {data.team.map((member) => (
+                <li class="flex justify-between gap-4 border-b border-border/60 pb-2">
+                  <span>{member.name}</span>
+                  {member.role && <span class="text-text-muted">{localize(member.role, locale)}</span>}
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+        <ul class="flex flex-wrap gap-2 font-mono text-xs text-text-muted">
+          {data.noGenerativeAi && <li class="rounded-sm border border-border px-2 py-1">{t.games.noAi}</li>}
+          {data.playableInBrowser && (
+            <li class="rounded-sm border border-border px-2 py-1">{t.games.browser}</li>
+          )}
+        </ul>
+      </aside>
+    </div>
+
+    <nav aria-label={t.nav.games} class="border-t border-border">
+      <div class="mx-auto grid max-w-6xl gap-4 px-6 py-12 sm:grid-cols-2">
+        {prev ? (
+          <a
+            href={gamePath(locale, prev.id)}
+            class="card-glow group block rounded-lg border border-border bg-card p-5"
+          >
+            <span class="font-mono text-xs text-text-muted">
+              <span
+                aria-hidden="true"
+                class="mr-1 inline-block transition-transform group-hover:-translate-x-1"
+              >
+                ←
+              </span>
+              {t.gameDetail.prev}
+            </span>
+            <span class="mt-1 block font-bold group-hover:text-accent">{prev.data.title}</span>
+          </a>
+        ) : (
+          <span class="hidden sm:block"></span>
+        )}
+        {next && (
+          <a
+            href={gamePath(locale, next.id)}
+            class="card-glow group block rounded-lg border border-border bg-card p-5 sm:text-right"
+          >
+            <span class="font-mono text-xs text-text-muted">
+              {t.gameDetail.next}
+              <span
+                aria-hidden="true"
+                class="ml-1 inline-block transition-transform group-hover:translate-x-1"
+              >
+                →
+              </span>
+            </span>
+            <span class="mt-1 block font-bold group-hover:text-accent">{next.data.title}</span>
+          </a>
+        )}
+      </div>
+      <p class="pb-16 text-center">
+        <a href={backHref} class="font-mono text-sm text-accent underline-offset-4 hover:underline">
+          <span aria-hidden="true">← </span>
+          {t.gameDetail.back}
+        </a>
+      </p>
+    </nav>
+  </article>
+
+  <Footer slot="footer" locale={locale} name={profile.name} />
+</BaseLayout>

@@ -14,7 +14,7 @@ const { locale, profile, education } = Astro.props;
 const t = useTranslations(locale);
 ---
 
-<section id="about" aria-labelledby="about-title" class="scroll-mt-16 py-20 md:py-28">
+<section id="about" aria-labelledby="about-title" class="py-20 md:py-28">
   <div class="mx-auto max-w-6xl px-6">
     <SectionHeading id="about-title" index="01" eyebrow={t.about.eyebrow} title={t.about.title} />
     <div class="grid gap-10 lg:grid-cols-[1.4fr_1fr] lg:gap-16">

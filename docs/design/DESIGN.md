@@ -87,6 +87,11 @@ Comprimento de linha do corpo: 60–75 caracteres (`max-width: 68ch`).
 | `grid-pan`, `hero-glow` | Grid de fundo deslizando e brilho "respirando" |
 | `marquee` / `marquee-track` | Letreiro de tecnologias na home (pausa no hover; decorativo, `aria-hidden`) |
 | `float`, `shimmer`, `scanlines`, `flicker` | Toques de jogo: d20 flutuando, brilho nos selos, efeito CRT nas capas |
+| `--reveal-offset` | Atrasa a revelação de itens lado a lado (ex.: `12%`, `24%`) para entrarem em cascata |
+| `draw-x` | Linha horizontal do processo desenhada ao rolar (no mobile, `draw-y`) |
+| `stretched-link` | Card inteiro clicável; links internos precisam de `relative z-10` |
+| `@view-transition` | Transição entre páginas (fade/slide); título do projeto e capa do jogo "viajam" do card para a página de detalhe via `view-transition-name` |
+| `prose` | Tipografia do corpo dos estudos de caso (`##` em laranja, listas numeradas como linha do tempo) |
 
 - Toque de RPG concentrado em `/jogos/`. A home profissional usa só os efeitos sóbrios (entrada, revelação, brilho de card, letreiro).
 - Estados iniciais escondidos ou em movimento ficam dentro de `@media (prefers-reduced-motion: no-preference)`; revelação ao rolar só com `@supports (animation-timeline: view())`. Sem suporte ou com movimento reduzido, tudo aparece estático.

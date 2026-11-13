@@ -1,0 +1,67 @@
+---
+import { projectPath, type Locale } from '../../i18n';
+import { useTranslations } from '../../i18n/ui';
+import SectionHeading from '../ui/SectionHeading.astro';
+
+interface Props {
+  locale: Locale;
+  index: string;
+  /** Slug of the case study that documents this process. */
+  caseSlug: string;
+}
+
+const { locale, index, caseSlug } = Astro.props;
+const t = useTranslations(locale);
+---
+
+<section
+  id="process"
+  aria-labelledby="process-title"
+  class="relative overflow-hidden border-t border-border py-20 md:py-28"
+>
+  <div aria-hidden="true" class="bg-grid bg-grid-fade absolute inset-0 opacity-60"></div>
+  <div class="relative mx-auto max-w-6xl px-6">
+    <SectionHeading
+      id="process-title"
+      index={index}
+      eyebrow={t.process.eyebrow}
+      title={t.process.title}
+      intro={t.process.intro}
+    />
+    <div class="relative">
+      <div
+        aria-hidden="true"
+        class="draw-x absolute top-5 right-[12.5%] left-[12.5%] hidden h-px bg-linear-to-r from-accent via-accent/60 to-border lg:block"
+      ></div>
+      <div
+        aria-hidden="true"
+        class="draw-y absolute top-2 bottom-2 left-5 w-px bg-linear-to-b from-accent via-accent/60 to-border lg:hidden"
+      ></div>
+      <ol class="grid gap-8 lg:grid-cols-4 lg:gap-6">
+        {t.process.steps.map((step, i) => (
+          <li class="reveal relative pl-16 lg:pl-0 lg:text-center" style={`--reveal-offset: ${i * 12}%`}>
+            <span
+              aria-hidden="true"
+              class="absolute top-0 left-0 grid size-10 place-items-center rounded-full border border-accent bg-bg font-mono text-sm text-accent shadow-glow lg:relative lg:mx-auto"
+            >
+              {String(i + 1).padStart(2, '0')}
+            </span>
+            <h3 class="pt-1.5 text-lg font-bold lg:mt-5 lg:pt-0">{step.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-text-muted lg:mx-auto lg:max-w-[26ch]">{step.text}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+    <p class="reveal mt-12 lg:text-center">
+      <a
+        href={projectPath(locale, caseSlug)}
+        class="group inline-flex items-center gap-2 font-mono text-sm text-accent underline-offset-4 hover:underline"
+      >
+        {t.process.cta}
+        <span aria-hidden="true" class="transition-transform duration-200 group-hover:translate-x-1">
+          →
+        </span>
+      </a>
+    </p>
+  </div>
+</section>

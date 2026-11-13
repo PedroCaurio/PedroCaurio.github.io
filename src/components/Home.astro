@@ -7,6 +7,7 @@ import Hero from './sections/Hero.astro';
 import About from './sections/About.astro';
 import Experience from './sections/Experience.astro';
 import Projects from './sections/Projects.astro';
+import Process from './sections/Process.astro';
 import Skills from './sections/Skills.astro';
 import PlayTeaser from './sections/PlayTeaser.astro';
 import Contact from './sections/Contact.astro';
@@ -34,9 +35,7 @@ const projects = (
     'projects',
     ({ id, data }) => id.startsWith(`${contentKey(locale)}/`) && !data.draft && !data.confidential,
   )
-)
-  .sort(byOrder)
-  .map((entry) => entry.data);
+).sort(byOrder);
 
 const degree = education.find((ed) => ed.expected);
 const technical = education.find((ed) => !ed.expected);
@@ -63,8 +62,9 @@ const jsonLd = personJsonLd({ site: Astro.site!, locale, profile, experience, ed
   <About locale={locale} profile={profile} education={education} />
   <Experience locale={locale} experience={experience} />
   <Projects locale={locale} projects={projects} githubUrl={github?.url} />
-  <Skills locale={locale} skills={proSkills} variant="pro" index="04" />
+  <Process locale={locale} index="04" caseSlug="portfolio" />
+  <Skills locale={locale} skills={proSkills} variant="pro" index="05" />
   <PlayTeaser locale={locale} />
-  <Contact locale={locale} profile={profile} index="05" />
+  <Contact locale={locale} profile={profile} index="06" />
   <Footer slot="footer" locale={locale} name={profile.name} />
 </BaseLayout>

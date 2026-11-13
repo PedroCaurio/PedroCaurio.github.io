@@ -21,6 +21,20 @@ export function isLocale(value: string | undefined): value is Locale {
 
 export const homePath: Record<Locale, string> = { 'pt-br': '/', en: '/en/' };
 export const playPath: Record<Locale, string> = { 'pt-br': '/jogos/', en: '/en/games/' };
+export const projectsPath: Record<Locale, string> = { 'pt-br': '/projetos/', en: '/en/projects/' };
+
+export function projectPath(locale: Locale, slug: string): string {
+  return `${projectsPath[locale]}${slug}/`;
+}
+
+export function gamePath(locale: Locale, id: string): string {
+  return `${playPath[locale]}${id}/`;
+}
+
+/** Content ids for projects are `<pt|en>/<slug>`. */
+export function projectSlug(id: string): string {
+  return id.slice(id.indexOf('/') + 1);
+}
 
 export function otherLocale(locale: Locale): Locale {
   return locale === 'en' ? 'pt-br' : 'en';

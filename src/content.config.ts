@@ -76,6 +76,7 @@ const games = defineCollection({
     summary: localized,
     role: localized,
     contributions: localizedList,
+    evidence: localizedList.optional(),
     team: z.array(z.object({ name: text, role: localized.optional() })).default([]),
     jam: z
       .object({
@@ -100,6 +101,9 @@ const projects = defineCollection({
     featured: z.boolean().default(false),
     confidential: z.boolean().default(false),
     draft: z.boolean().default(false),
+    context: text.optional(),
+    team: z.array(z.object({ name: text, url: z.url().optional() })).default([]),
+    facts: z.array(z.object({ label: text, value: text })).default([]),
     stack: z.array(text).min(1),
     links: z.object({ repo: z.url().optional(), demo: z.url().optional() }).default({}),
   }),

@@ -32,12 +32,13 @@ Fase 3 do Spec-Driven Development. Cada tarefa termina com a verificação indic
 
 - [~] T-30 `BaseLayout` com meta, OG, canonical, `hreflang`, JSON-LD `Person` e skip link. Falta: OG PNG e passar no validador de rich results.
 - [x] T-31 Componentes `ui/` (`SectionHeading`, `Tag`, `ButtonLink`) e `layout/` (`Header`, `Footer`).
-- [x] T-32 Home profissional em `/` e `/en/` (`src/components/Home.astro` + `sections/`): hero com terminal e números, letreiro de tecnologias, sobre, experiência, projetos, habilidades, chamada para Jogos & RPG, contato. Botão "Baixar CV" do R-01 entra com T-34.
+- [x] T-32 Home profissional em `/` e `/en/` (`src/components/Home.astro` + `sections/`): hero com terminal, letreiro de tecnologias, sobre, experiência, projetos, habilidades, chamada para Jogos & RPG, contato. Botão "Baixar CV" do R-01 entra com T-34.
 - [x] T-32b Página Jogos & RPG em `/jogos/` e `/en/games/` (`src/components/PlayPage.astro`): hero próprio com d20, jogos, ficha de personagem completa, mesa de RPG. Separada da home a pedido do Pedro.
 - [x] T-32c Animações em CSS puro (ver DESIGN.md › Movimento), todas neutralizadas por `prefers-reduced-motion`. *Verif.: 54 testes (e2e R-01, R-03, R-05..R-08, R-13, R-20, termos proibidos SGEM/ESP32 + axe) em 390/1280; hover e animações conferidos no navegador.*
-- [ ] T-33 `/projetos/[slug]` e `/jogos/[slug]`. *Verif.: e2e R-04/R-05.*
+- [x] T-33 Estudos de caso em `/projetos/[slug]` e `/en/projects/[slug]` (`src/components/ProjectPage.astro`: ficha técnica, índice, equipe, stack, anterior/próximo) e fichas dos jogos em destaque em `/jogos/[slug]` e `/en/games/[slug]` (`src/components/GamePage.astro`). Publicados: este site, distributed-chat, simulador de SO e Defesa do Reino, com fatos tirados dos READMEs e o time creditado. *Verif.: `tests/e2e/details.spec.ts` + smoke/axe nas novas rotas.*
+- [x] T-33b Hero sem a faixa de números; seção "Como eu trabalho" (`sections/Process.astro`); navegação em segunda linha rolável abaixo de 1280px; transições entre páginas (View Transitions em CSS).
 - [ ] T-34 `/cv` + `build-pdf.ts`. *Verif.: copiar/colar texto do PDF mantém ordem; R-09/R-10.*
-- [ ] T-35 `/como-foi-feito` (R-12).
+- [x] T-35 R-12 atendido pelo estudo de caso `/projetos/portfolio/` (processo SDD, harness, conteúdo como dado, verificação) e pela seção "Como eu trabalho" na home, em vez de uma rota `/como-foi-feito` separada.
 - [ ] T-36 `404`.
 
 ## Fase 4 — Camada de máquina e extras

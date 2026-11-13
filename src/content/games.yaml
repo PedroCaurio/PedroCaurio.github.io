@@ -17,6 +17,14 @@
     en:
       - The entire codebase, written without AI (banned in the jam).
       - Visual effects (VFX) and game feel to polish a simple clicker mechanic.
+  evidence:
+    pt: [Entrega sob prazo de jam, sem IA generativa, VFX e game feel, Código completo de um jogo premiado]
+    en:
+      [
+        Shipping on a jam deadline without generative AI,
+        VFX and game feel,
+        The full codebase of an award-winning game,
+      ]
   team:
     - name: Pedro Caurio
       role: { pt: Programação, en: Programming }
@@ -57,6 +65,21 @@
       - Enemies, attacks and enemy state machine.
       - Economy, skills and distinct playable characters.
       - Screen transitions and visual effects (VFX).
+  evidence:
+    pt:
+      [
+        Arquitetura de rede e multiplayer,
+        IA de inimigos com state machines,
+        Sistemas de jogo e dados (economia e skills),
+        Código dividido com outra programadora,
+      ]
+    en:
+      [
+        Network and multiplayer architecture,
+        Enemy AI with state machines,
+        Game and data systems (economy and skills),
+        Codebase shared with another programmer,
+      ]
   team:
     - name: Pedro Caurio
       role: { pt: Programação, en: Programming }
@@ -90,6 +113,21 @@
       - Engine retrô sem sistemas prontos, com colisão, projéteis, movimentação, input e câmera escritos do zero.
     en:
       - A retro engine with no built-in systems, so collision, projectiles, movement, input and camera were written from scratch.
+  evidence:
+    pt:
+      [
+        Fundamentos de engine (colisão,
+        câmera e input do zero),
+        Modo cooperativo para 2 jogadores,
+        Código aberto no GitHub,
+      ]
+    en:
+      [
+        Engine fundamentals (collision,
+        camera and input from scratch),
+        2-player co-op mode,
+        Open source on GitHub,
+      ]
   noGenerativeAi: true
   links:
     itch: https://ju-acunha.itch.io/mathias-shooter

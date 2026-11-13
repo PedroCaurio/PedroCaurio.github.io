@@ -78,13 +78,13 @@ flowchart LR
 
 | Rota | Conteúdo | Requisitos |
 | --- | --- | --- |
-| `/` | Portfólio profissional: Hero, Sobre, Experiência, Projetos, Habilidades (`track: professional`), chamada para Jogos & RPG, Contato | R-01..R-04, R-07, R-08 |
+| `/` | Portfólio profissional: Hero, Sobre, Experiência, Projetos, Como eu trabalho, Habilidades (`track: professional`), chamada para Jogos & RPG, Contato | R-01..R-04, R-07, R-08, R-12 |
 | `/jogos/` | Jogos & RPG: hero próprio, Jogos, Ficha de personagem (todas as skills com atributo), Mesa de RPG, Contato | R-05, R-06 |
-| `/projetos/[slug]` | Estudo de caso | R-04, R-21 |
-| `/jogos/[slug]` | Detalhe do jogo (só destaques) | R-05, R-21 |
+| `/projetos/[slug]` | Estudo de caso (`ProjectPage.astro`): ficha técnica, corpo em Markdown com índice, equipe, stack, links, anterior/próximo | R-04, R-21 |
+| `/projetos/portfolio/` | Estudo de caso deste site: processo SDD, harness de agentes, verificação (substitui `/como-foi-feito`) | R-12 |
+| `/jogos/[slug]` | Ficha do jogo (só destaques, `GamePage.astro`) | R-05, R-21 |
 | `/cv` | Currículo HTML imprimível | R-10 |
 | `/cv/pedro-caurio.pdf` | PDF gerado | R-09 |
-| `/como-foi-feito` | Processo SDD + agentes | R-12 |
 | `/llms.txt`, `/resume.json` | Máquina | R-22 |
 | `/en/...` | Espelho em inglês | R-13 |
 | `/dev/tokens`, `/dev/conteudo` | Páginas internas de verificação (noindex, fora do sitemap) | — |
@@ -99,8 +99,8 @@ Fonte de verdade: [`src/content.config.ts`](../../src/content.config.ts). Resumo
 | `experience` | `experience.yaml` | organization, url, position\*, employment\*, startDate?, endDate?, confidential, summary\*, highlights\*[], tags\*[] |
 | `education` | `education.yaml` | institution, shortName, area\*, studyType\*, startDate?, endDate?, expected, score? |
 | `skills` | `skills.yaml` | attribute\* (ficha de RPG), name\*, track (`professional`\|`play`), keywords\*[] |
-| `games` | `games.yaml` | title, engine, language, genre\*, summary\*, role\*, contributions\*[], team[], jam?{name, awards\*[]}, noGenerativeAi, links{itch, repo?}, playableInBrowser, featured, order, coverFit (`cover`\|`contain`; capa em `src/assets/games/<id>.png`) |
-| `projects` | `projects/{pt,en}/<slug>.md` | title, summary, role, stack[], links, confidential, draft, featured, order + corpo (estudo de caso) |
+| `games` | `games.yaml` | title, engine, language, genre\*, summary\*, role\*, contributions\*[], evidence\*[]?, team[], jam?{name, awards\*[]}, noGenerativeAi, links{itch, repo?}, playableInBrowser, featured, order, coverFit (`cover`\|`contain`; capa em `src/assets/games/<id>.png`) |
+| `projects` | `projects/{pt,en}/<slug>.md` | title, summary, role, context?, team[]{name, url?}, facts[]{label, value}, stack[], links, confidential, draft, featured, order + corpo (estudo de caso, `##` vira item do índice) |
 | `rpg` | `rpg.yaml` | title, kind, status\*, summary\*?, draft |
 
 \* campo localizado `{ pt, en }`. Helpers em `src/i18n/index.ts` (`localize(campo, locale)`). Datas em `AAAA-MM`. Entradas `draft: true` não são publicadas nas páginas finais.
